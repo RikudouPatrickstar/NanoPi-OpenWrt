@@ -92,19 +92,28 @@ git clone -b master --depth 1 https://github.com/vernesong/OpenClash package/new
 mv package/new/OpenClash/luci-app-openclash package/new/luci-app-openclash
 rm -fr package/new/OpenClash
 ## 修改 DashBoard 默认地址和密码
-#pushd package/new/luci-app-openclash/root/usr/share/openclash/dashboard/assets
-#  sed -i 's/e=D(\"externalControllerAddr\",\"127.0.0.1\"),t=D(\"externalControllerPort\",\"9090\"),n=D(\"secret\",\"\")/e=D(\"externalControllerAddr\",\"nanopi-r2s.lan\"),t=D(\"externalControllerPort\",\"9090\"),n=D(\"secret\",\"123456\")/' *js
-#  sed -i 's/hostname:\"127.0.0.1\",port:\"9090\",secret:\"\"/hostname:\"nanopi-r2s.lan\",port:\"9090\",secret:\"123456\"/' *js
-#popd
+pushd package/new/luci-app-openclash/root/usr/share/openclash/dashboard
+  sed -i 's,<!--meta name="external-controller" content="http://secret@example.com:9090"-->,<meta name="external-controller" content="http://123456@nanopi-r2s:9090">,' index.html
+popd
 ## 预置内核
-mkdir -p package/base-files/files/etc/openclash/core
 clash_dev_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-armv8 | sed 's/.*url\": \"//g' | sed 's/\"//g')
 clash_game_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN | grep /clash-linux-armv8 | sed 's/.*url\": \"//g' | sed 's/\"//g')
 clash_premium_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-armv8 | sed 's/.*url\": \"//g' | sed 's/\"//g')
-wget -qO- $clash_dev_url | tar xOvz > package/base-files/files/etc/openclash/core/clash
-wget -qO- $clash_game_url | tar xOvz > package/base-files/files/etc/openclash/core/clash_game
-wget -qO- $clash_premium_url | gunzip -c > package/base-files/files/etc/openclash/core/clash_tun
-chmod +x package/base-files/files/etc/openclash/core/clash*
+mkdir -p package/base-files/files/etc/openclash/core
+pushd package/base-files/files/etc/openclash/core
+  wget -qO- $clash_dev_url | tar xOvz > clash
+  wget -qO- $clash_game_url | tar xOvz > clash_game
+  wget -qO- $clash_premium_url | gunzip -c > clash_tun
+  chmod +x clash*
+popd
+
+# 替换为 master 分支的 luci-app-samba4
+rm -fr feeds/luci/applications/luci-app-samba4
+svn co https://github.com/openwrt/luci/trunk/applications/luci-app-samba4 feeds/luci/applications/luci-app-samba4
+
+# 腾讯 DDNS
+svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/others/luci-app-tencentddns package/new/luci-app-tencentddns
+sed -i 's,tencentcloud,services,g' package/new/luci-app-tencentddns/luasrc/controller/tencentddns.lua
 
 # 网易云音乐解锁
 #git clone --depth 1 https://github.com/immortalwrt/luci-app-unblockneteasemusic.git package/new/luci-app-unblockneteasemusic
@@ -120,14 +129,6 @@ chmod +x package/base-files/files/etc/openclash/core/clash*
 #    fi
 #  done
 #popd
-
-# 替换为 master 分支的 luci-app-samba4
-rm -fr feeds/luci/applications/luci-app-samba4
-svn co https://github.com/openwrt/luci/trunk/applications/luci-app-samba4 feeds/luci/applications/luci-app-samba4
-
-# 腾讯 DDNS
-svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/others/luci-app-tencentddns package/new/luci-app-tencentddns
-sed -i 's,tencentcloud,services,g' package/new/luci-app-tencentddns/luasrc/controller/tencentddns.lua
 
 # 移除 LuCI 部分页面
 #pushd feeds/luci/modules/luci-mod-system/root/usr/share/luci/menu.d
