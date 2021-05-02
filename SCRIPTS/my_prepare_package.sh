@@ -39,6 +39,10 @@ rm -fr package/new/luci-theme-argon
 git clone -b master --single-branch https://github.com/jerrykuku/luci-theme-argon package/new/luci-theme-argon
 pushd package/new/luci-theme-argon
   pushd luasrc/view/themes/argon
+    ## 修复移动端侧边栏无法呼出的问题
+    rm -f footer.htm header.htm
+    wget -q https://raw.githubusercontent.com/jerrykuku/luci-theme-argon/e8c3cb7d98ed172568f81a1a32021325336d3dfb/luasrc/view/themes/argon/footer.htm -O footer.htm
+    wget -q https://raw.githubusercontent.com/jerrykuku/luci-theme-argon/e8c3cb7d98ed172568f81a1a32021325336d3dfb/luasrc/view/themes/argon/header.htm -O header.htm
     ## 移除 footer.htm 底部文字
     sed -i '/<a class=\"luci-link\" href=\"https:\/\/github.com\/openwrt\/luci\">/d' footer.htm
     sed -i '/<a href=\"https:\/\/github.com\/jerrykuku\/luci-theme-argon\">/d' footer.htm
