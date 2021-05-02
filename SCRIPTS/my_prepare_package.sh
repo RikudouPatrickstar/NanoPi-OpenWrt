@@ -4,12 +4,12 @@ OP_SC_DIR=$(pwd)
 
 #########################################################
 ################ 修改 Nick 的源码 -Start- ################
-# 调整 02 脚本内容
-## 移除 fuck 组件
-sed -i '/fuck/d' 02_prepare_package.sh
-
-## 移除 autocore 组件
+# 移除多余组件
 sed -i '/autocore/d' 02_prepare_package.sh
+sed -i '/coremark/d' 02_prepare_package.sh
+sed -i '/autoreboot/d' 02_prepare_package.sh
+sed -i '/ramfree/d' 02_prepare_package.sh
+sed -i '/fuck/d' 02_prepare_package.sh
 
 # 替换默认设置
 pushd ${OP_SC_DIR}/../PATCH/duplicate/addition-trans-zh-r2s/files
