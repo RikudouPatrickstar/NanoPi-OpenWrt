@@ -111,10 +111,6 @@ pushd package/base-files/files/etc/openclash/core
   chmod +x clash*
 popd
 
-# 替换为 master 分支的 luci-app-samba4
-rm -fr feeds/luci/applications/luci-app-samba4
-svn co https://github.com/openwrt/luci/trunk/applications/luci-app-samba4 feeds/luci/applications/luci-app-samba4
-
 # 腾讯 DDNS
 svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/luci-app-tencentddns package/new/luci-app-tencentddns
 sed -i 's,tencentcloud,services,g' package/new/luci-app-tencentddns/luasrc/controller/tencentddns.lua
@@ -132,18 +128,6 @@ sed -i 's,tencentcloud,services,g' package/new/luci-app-tencentddns/luasrc/contr
 #      sed -i 's/解除网易云音乐播放限制/网易云音乐解锁/g' "$ubf"
 #    fi
 #  done
-#popd
-
-# 移除 LuCI 部分页面
-#pushd feeds/luci/modules/luci-mod-system/root/usr/share/luci/menu.d
-#  rm -f luci-mod-system.json
-#  cp ${OP_SC_DIR}/../PATCH/luci-mod-system.json ./
-#popd
-#pushd feeds/luci/modules/luci-mod-system/htdocs/luci-static/resources/view/system
-#  rm -f flash.js mounts.js
-#popd
-#pushd feeds/luci/modules/luci-mod-system/luasrc/model/cbi/admin_system
-#  rm -f backupfiles.lua
 #popd
 ################ 自定义部分 -End- ################
 #################################################

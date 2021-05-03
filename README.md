@@ -10,7 +10,7 @@
 
 3. 默认用户、密码： `root` `无`
 
-4. 插件仅包含： [`OpenClash`](https://github.com/vernesong/OpenClash) [`Samba4网络共享`](https://github.com/openwrt/luci/tree/master/applications/luci-app-samba4) [`SSRPlus`](https://github.com/fw876/helloworld) [`腾讯云DDNS`](https://github.com/msylgj/OpenWrt_luci-app/tree/main/luci-app-tencentddns)
+4. 插件仅包含： [`OpenClash`](https://github.com/vernesong/OpenClash) [`Samba4网络共享`](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-samba4) [`SSRPlus`](https://github.com/fw876/helloworld) [`腾讯云DDNS`](https://github.com/msylgj/OpenWrt_luci-app/tree/main/luci-app-tencentddns)
 
 7. 主题仅包含 [`luci-theme-argon`](https://github.com/jerrykuku/luci-theme-argon)
 
@@ -21,3 +21,4 @@
 ## 感谢
 
 感谢所有提供了上游项目代码和给予了帮助的大佬们
+
