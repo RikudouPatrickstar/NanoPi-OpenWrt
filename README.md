@@ -16,7 +16,7 @@
 
 8. 默认关闭 `IPv6`
 
-9. 移除上游的 [`fuck`](https://github.com/nicholas-opensource/OpenWrt-Autobuild/blob/main/PATCH/new/script/fuck) [`autocore`](https://github.com/immortalwrt/immortalwrt/tree/master/package/lean/autocore) 等组件
+9. 移除上游的 [`fuck`](https://github.com/nicholas-opensource/OpenWrt-Autobuild/blob/main/PATCH/new/script/fuck) 等组件
 
 ## 感谢
 

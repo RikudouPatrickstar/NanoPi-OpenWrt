@@ -5,11 +5,13 @@ OP_SC_DIR=$(pwd)
 #########################################################
 ################ 修改 Nick 的源码 -Start- ################
 # 移除多余组件
-sed -i '/autocore/d' 02_prepare_package.sh
 sed -i '/coremark/d' 02_prepare_package.sh
 sed -i '/autoreboot/d' 02_prepare_package.sh
 sed -i '/ramfree/d' 02_prepare_package.sh
 sed -i '/fuck/d' 02_prepare_package.sh
+
+## 调整 AutoCore 补丁
+sed -i 's,Others/master/add-openwrt.patch,Others/master/autocore-repatch.patch,' 02_prepare_package.sh
 
 # 替换默认设置
 pushd ${OP_SC_DIR}/../PATCH/duplicate/addition-trans-zh-r2s/files
