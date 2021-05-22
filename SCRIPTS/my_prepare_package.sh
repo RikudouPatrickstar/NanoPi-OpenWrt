@@ -131,6 +131,9 @@ sed -i 's,tencentcloud,services,g' package/new/luci-app-tencentddns/luasrc/contr
 #    fi
 #  done
 #popd
+
+# 调整默认 LAN IP
+sed -i 's/192.168.1.1/192.168.88.1/g' package/base-files/files/bin/config_generate
 ################ 自定义部分 -End- ################
 #################################################
 
