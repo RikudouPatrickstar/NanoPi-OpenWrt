@@ -97,14 +97,6 @@ rm -fr package/new/OpenClash
 git clone -b master --depth 1 https://github.com/vernesong/OpenClash package/new/OpenClash
 mv package/new/OpenClash/luci-app-openclash package/new/luci-app-openclash
 rm -fr package/new/OpenClash
-## 编译 yacd
-git clone -b master --single-branch https://github.com/haishanh/yacd.git
-pushd yacd
-  yarn
-  yarn build
-popd
-mv yacd/public ./yacd-dist
-rm -fr yacd
 ## 编译 dashboard
 git clone -b master --single-branch https://github.com/Dreamacro/clash-dashboard.git
 pushd clash-dashboard
@@ -115,8 +107,7 @@ mv clash-dashboard/dist ./dashboard-dist
 rm -fr clash-dashboard
 ## 使用最新的控制面板，并调整 dashboard 默认地址
 pushd package/new/luci-app-openclash/root/usr/share/openclash
-  rm -fr dashboard yacd
-  mv ${OP_SC_DIR}/yacd-dist ./yacd
+  rm -fr dashboard
   mv ${OP_SC_DIR}/dashboard-dist ./dashboard
   sed -i 's,<!--meta name="external-controller" content="http://secret@example.com:9090"-->,<meta name="external-controller" content="http://123456@nanopi-r2s:9090">,' ./dashboard/index.html
 popd
