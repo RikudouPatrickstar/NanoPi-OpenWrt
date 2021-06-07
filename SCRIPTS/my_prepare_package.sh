@@ -65,7 +65,7 @@ popd
 # Bootstrap 主题移除底部文字
 #sed -i '/<a href=\"https:\/\/github.com\/openwrt\/luci\">/d' feeds/luci/themes/luci-theme-bootstrap/luasrc/view/themes/bootstrap/footer.htm
 
-# SSRP 微调
+# SSRPlus 微调
 pushd package/lean/luci-app-ssr-plus
   ## 替换部分翻译
   pushd po/zh-cn/
@@ -97,9 +97,28 @@ rm -fr package/new/OpenClash
 git clone -b master --depth 1 https://github.com/vernesong/OpenClash package/new/OpenClash
 mv package/new/OpenClash/luci-app-openclash package/new/luci-app-openclash
 rm -fr package/new/OpenClash
-## 修改 DashBoard 默认地址和密码
-pushd package/new/luci-app-openclash/root/usr/share/openclash/dashboard
-  sed -i 's,<!--meta name="external-controller" content="http://secret@example.com:9090"-->,<meta name="external-controller" content="http://123456@nanopi-r2s:9090">,' index.html
+## 编译 yacd
+git clone -b master --single-branch https://github.com/haishanh/yacd.git
+pushd yacd
+  yarn
+  yarn build
+popd
+mv yacd/public ./yacd-dist
+rm -fr yacd
+## 编译 dashboard
+git clone -b master --single-branch https://github.com/Dreamacro/clash-dashboard.git
+pushd clash-dashboard
+  yarn
+  yarn build
+popd
+mv clash-dashboard/dist ./dashboard-dist
+rm -fr clash-dashboard
+## 使用最新的控制面板，并调整 dashboard 默认地址
+pushd package/new/luci-app-openclash/root/usr/share/openclash
+  rm -fr dashboard yacd
+  mv ${OP_SC_DIR}/yacd-dist ./yacd
+  mv ${OP_SC_DIR}/dashboard-dist ./dashboard
+  sed -i 's,<!--meta name="external-controller" content="http://secret@example.com:9090"-->,<meta name="external-controller" content="http://123456@nanopi-r2s:9090">,' ./dashboard/index.html
 popd
 ## 预置内核
 clash_dev_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-armv8 | sed 's/.*url\": \"//g' | sed 's/\"//g')
@@ -116,21 +135,6 @@ popd
 # 腾讯 DDNS
 svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/luci-app-tencentddns package/new/luci-app-tencentddns
 sed -i 's,tencentcloud,services,g' package/new/luci-app-tencentddns/luasrc/controller/tencentddns.lua
-
-# 网易云音乐解锁
-#git clone --depth 1 https://github.com/immortalwrt/luci-app-unblockneteasemusic.git package/new/luci-app-unblockneteasemusic
-#pushd package/new/luci-app-unblockneteasemusic
-#  ## 删除部分描述
-#  sed -i '/原理：采用/d' luasrc/model/cbi/unblockneteasemusic/unblockneteasemusic.lua
-#  sed -i '/启用本插件以解除网易云音乐播放限制/d' luasrc/model/cbi/unblockneteasemusic/unblockneteasemusic.lua
-#  ## 全局替换 解除网易云音乐播放限制 为 网易云音乐解锁
-#  ubfiles="$(find 2>"/dev/null")"
-#  for ubf in ${ubfiles}; do
-#    if [ -f "$ubf" ]; then
-#      sed -i 's/解除网易云音乐播放限制/网易云音乐解锁/g' "$ubf"
-#    fi
-#  done
-#popd
 
 # 调整默认 LAN IP
 sed -i 's/192.168.1.1/192.168.88.1/g' package/base-files/files/bin/config_generate

@@ -51,6 +51,10 @@ jobs:
         wget -qO - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | sed 's/python-/python3-/g' | /bin/bash
         sudo -E apt-get clean -y
         git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
+    - name: Setup Node
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
     - name: Get Nick Source
       run: |
         git clone --single-branch -b main https://github.com/nicholas-opensource/OpenWrt-Autobuild.git
