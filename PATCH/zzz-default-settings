@@ -6,6 +6,10 @@ uci set system.@system[0].zonename=Asia/Shanghai
 uci set system.@system[0].hostname='NanoPi-R2S'
 uci commit system
 
+# Default theme
+uci set luci.main.mediaurlbase='/luci-static/argon'
+uci commit luci
+
 # OpenClash
 uci set openclash.config.core_version='linux-armv8'
 #uci set openclash.config.en_mode='fake-ip'

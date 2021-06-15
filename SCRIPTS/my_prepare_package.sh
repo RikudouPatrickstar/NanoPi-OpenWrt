@@ -59,7 +59,7 @@ pushd package/new/luci-theme-argon
 popd
 
 # Bootstrap 主题移除底部文字
-#sed -i '/<a href=\"https:\/\/github.com\/openwrt\/luci\">/d' feeds/luci/themes/luci-theme-bootstrap/luasrc/view/themes/bootstrap/footer.htm
+sed -i '/<a href=\"https:\/\/github.com\/openwrt\/luci\">/d' feeds/luci/themes/luci-theme-bootstrap/luasrc/view/themes/bootstrap/footer.htm
 
 # SSRPlus 微调
 pushd package/lean/luci-app-ssr-plus
@@ -122,10 +122,6 @@ popd
 # 腾讯 DDNS
 svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/luci-app-tencentddns package/new/luci-app-tencentddns
 sed -i 's,tencentcloud,services,g' package/new/luci-app-tencentddns/luasrc/controller/tencentddns.lua
-
-# OpenAppFilter
-wget -qO- https://github.com/destan19/OpenAppFilter/archive/refs/tags/v3.0.1.tar.gz | tar xvz
-mv OpenAppFilter* package/new/OpenAppFilter
 
 # 调整默认 LAN IP
 sed -i 's/192.168.1.1/192.168.88.1/g' package/base-files/files/bin/config_generate
