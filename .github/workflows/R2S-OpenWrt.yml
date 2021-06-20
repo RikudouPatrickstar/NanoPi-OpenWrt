@@ -5,7 +5,7 @@ on:
     branches: 
       - master
     paths:
-      - '.github/workflows/R2S-OpenWrt.yml'
+      - 'PATCH/**'
       - 'SCRIPTS/**'
       - 'SEED/**'
 jobs:
@@ -14,16 +14,17 @@ jobs:
     steps:
     - name: Clone Repository
       uses: actions/checkout@main
-    - name: Generate Tag & Release Name
-      id: generate_name
+    - name: Generate Information
+      id: gen_info
       env:
         TZ: Asia/Shanghai
       run: |
-        time=$(date +%Y%m%d%H%M)
-        release_tag="$time"
-        release_name="R2S-OpenWrt-v21.02-$time"
-        echo "##[set-output name=release_name;]$release_name"
+        release_tag="$(date +%Y-%m-%d_%H:%M)"
+        release_name="R2S-OpenWrt-v21.02-$release_tag"
+        release_description="${{ secrets.DESC }}"
         echo "##[set-output name=release_tag;]$release_tag"
+        echo "##[set-output name=release_name;]$release_name"
+        echo "##[set-output name=release_description;]$release_description"
     - name: Show CPU Info
       run: |
         echo -e "Total CPU cores\t: $(nproc)"
@@ -55,14 +56,14 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: '14'
-    - name: Get Nick Source
+    - name: Merge Nick's Code
       run: |
         git clone --single-branch -b main https://github.com/nicholas-opensource/OpenWrt-Autobuild.git
         mv ./OpenWrt-Autobuild/SCRIPTS/* ./SCRIPTS/
         mv ./SCRIPTS/R2S/* ./SCRIPTS/
         mv ./OpenWrt-Autobuild/PATCH/* ./PATCH/
         rm -rf ./OpenWrt-Autobuild/
-    - name: Get OpenWrt Source
+    - name: Get OpenWrt Code
       run: |
         sudo chown -R runner:runner ${GITHUB_WORKSPACE}
         cp ./SCRIPTS/01_get_ready.sh ./
@@ -112,7 +113,7 @@ jobs:
         cd ./openwrt/
         let make_process=$(nproc)+1
         make -j${make_process} V=m || make -j${make_process} V=m || make -j1 V=s
-    - name: Cleaning
+    - name: Package Artifact
       run: |
         mv ./openwrt/.config ./openwrt/bin/targets/rockchip/armv8/config-full.buildinfo
         cd ./openwrt/bin/targets/rockchip/armv8/
@@ -122,12 +123,13 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@main
       with:
-        name: ${{ steps.generate_name.outputs.release_name }}
+        name: ${{ steps.gen_info.outputs.release_name }}
         path: ./openwrt/bin/targets/rockchip/armv8/*
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:
         artifacts: ./openwrt/bin/targets/rockchip/armv8/*
-        name: ${{ steps.generate_name.outputs.release_name }}
-        tag: ${{ steps.generate_name.outputs.release_tag }}
+        name: ${{ steps.gen_info.outputs.release_name }}
+        tag: ${{ steps.gen_info.outputs.release_tag }}
+        body: ${{ steps.gen_info.outputs.release_description }}
         token: ${{ secrets.GITHUB_TOKEN }}

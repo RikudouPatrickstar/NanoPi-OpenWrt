@@ -2,7 +2,7 @@
 
 OP_SC_DIR=$(pwd)
 
-#########################################################
+
 ################ 修改 Nick 的源码 -Start- ################
 # 移除多余组件
 sed -i '/coremark/d' 02_prepare_package.sh
@@ -19,20 +19,16 @@ pushd ${OP_SC_DIR}/../PATCH/duplicate/addition-trans-zh-r2s/files
   cp ${OP_SC_DIR}/../PATCH/zzz-default-settings ./
 popd
 ################ 修改 Nick 的源码 -End- ################
-#######################################################
 
 
-#####################################################
 ################ 执行 02 脚本 -Start- ################
 /bin/bash 02_prepare_package.sh
 /bin/bash 02_R2S.sh
 ################ 执行 02 脚本 -End- ################
-###################################################
 
 
-###################################################
 ################ 自定义部分 -Start- ################
-# 调整 LuCI 依赖，去除 luci-app-opkg，替换 luci-theme-bootstrap 为 luci-theme-argon
+# 调整 LuCI 依赖，去除 luci-app-opkg，替换主题 bootstrap 为 argon
 sed -i 's/+luci-app-opkg //' ./feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/' ./feeds/luci/collections/luci/Makefile
 
@@ -75,7 +71,6 @@ pushd package/lean/luci-app-ssr-plus
   ## 修改部分内容
   pushd luasrc/model/cbi/shadowsocksr
     sed -i 's/Map("shadowsocksr", translate("ShadowSocksR Plus+ Settings"), translate("<h3>Support SS\/SSR\/V2RAY\/TROJAN\/NAIVEPROXY\/SOCKS5\/TUN etc.<\/h3>"))/Map("shadowsocksr", translate("Basic Settings"))/' client.lua
-    #sed -i '/Clang.CN.CIDR/a\o:value("https://raw.sevencdn.com/QiuSimons/Chnroute/master/dist/chnroute/chnroute.txt", translate("QiuSimons/Chnroute"))' advanced.lua
     sed -i '/Customize Netflix IP Url/d' advanced.lua
   popd
   ## 全局替换 ShadowSocksR Plus+ 为 SSRPlus
@@ -101,13 +96,13 @@ pushd clash-dashboard
 popd
 mv clash-dashboard/dist ./dashboard-dist
 rm -fr clash-dashboard
-## 使用最新的控制面板，并调整 dashboard 默认地址
+## 使用最新的 dashboard，并调整其默认地址
 pushd package/new/luci-app-openclash/root/usr/share/openclash
   rm -fr dashboard
   mv ${OP_SC_DIR}/dashboard-dist ./dashboard
   sed -i 's,<!--meta name="external-controller" content="http://secret@example.com:9090"-->,<meta name="external-controller" content="http://123456@nanopi-r2s:9090">,' ./dashboard/index.html
 popd
-## 预置内核
+## 预置 Clash 内核
 clash_dev_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-armv8 | sed 's/.*url\": \"//g' | sed 's/\"//g')
 clash_game_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN | grep /clash-linux-armv8 | sed 's/.*url\": \"//g' | sed 's/\"//g')
 clash_premium_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-armv8 | sed 's/.*url\": \"//g' | sed 's/\"//g')
@@ -124,13 +119,13 @@ svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/luci-app-tencentddns pac
 sed -i 's,tencentcloud,services,g' package/new/luci-app-tencentddns/luasrc/controller/tencentddns.lua
 
 # 调整默认 LAN IP
-sed -i 's/192.168.1.1/192.168.88.1/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/192.168.24.1/g' package/base-files/files/bin/config_generate
 
 # 纠正 luci-app-firewall 翻译
 sed -i 's,路由/NAT 卸载,路由/NAT 分载,g' feeds/luci/applications/luci-app-firewall/po/zh_Hans/firewall.po
 ################ 自定义部分 -End- ################
-#################################################
+
 
 unset OP_SC_DIR
-exit 0
 
+exit 0

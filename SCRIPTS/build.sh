@@ -10,14 +10,14 @@ git clone -b master --single-branch https://github.com/RikudouPatrickstar/R2S-Op
 
 cd ./R2S-OpenWrt/
 
-# Get Nick Source
+# Merge Nick's Code
 git clone https://github.com/nicholas-opensource/OpenWrt-Autobuild.git
 mv ./OpenWrt-Autobuild/SCRIPTS/* ./SCRIPTS/
 mv ./SCRIPTS/R2S/* ./SCRIPTS/
 mv ./OpenWrt-Autobuild/PATCH/* ./PATCH/
 rm -rf ./OpenWrt-Autobuild/
 
-# Get OpenWrt Source
+# Get OpenWrt Code
 cp ./SCRIPTS/01_get_ready.sh ./
 bash 01_get_ready.sh
 cp -r ./SCRIPTS/* ./openwrt/
@@ -37,7 +37,7 @@ make defconfig
 # # Make Download
 # make download -j10
 
-# # Compile
+# # Compile Openwrt
 # let make_process=$(nproc)+1
 # make toolchain/install -j${make_process} V=m
 # make -j${make_process} V=m || make -j${make_process} V=m || make -j1 V=s
