@@ -65,6 +65,9 @@ pushd package/lean/luci-app-ssr-plus
     sed -i 's_shadowsocksr", translate(".*")_shadowsocksr"_' servers.lua
     sed -i '/Customize Netflix IP Url/d' advanced.lua
   popd
+  pushd luasrc/view/shadowsocksr
+    sed -i 's_ShadowsocksR Plus+ __' status.htm
+  popd
   ## 修改部分翻译
   pushd po/zh-cn/
     sed -i '/ShadowSocksR Plus+ Settings/d' ssr-plus.po
