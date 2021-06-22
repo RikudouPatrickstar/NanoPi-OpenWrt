@@ -59,19 +59,20 @@ sed -i '/<a href=\"https:\/\/github.com\/openwrt\/luci\">/d' feeds/luci/themes/l
 
 # SSRPlus 微调
 pushd package/lean/luci-app-ssr-plus
-  ## 替换部分翻译
-  pushd po/zh-cn/
-    sed -i 's/ShadowSocksR Plus+ Settings/Basic Settings/' ssr-plus.po
-    sed -i 's/ShadowSocksR Plus+ 设置/基本设置/' ssr-plus.po
-    sed -i '/Customize Netflix IP Url/d' ssr-plus.po
-    sed -i '/自定义Netflix IP更新URL（默认项目地址：/d' ssr-plus.po
-    sed -i '/<h3>Support SS/d' ssr-plus.po
-    sed -i '/<h3>支持 SS/d' ssr-plus.po
-  popd
   ## 修改部分内容
   pushd luasrc/model/cbi/shadowsocksr
-    sed -i 's_ShadowSocksR Plus+ Settings"), translate(.*))_Basic Settings"))_' client.lua
+    sed -i 's_ShadowSocksR Plus+ Settings"), translate(.*))_SSRPlus"))_' client.lua
+    sed -i 's_shadowsocksr", translate(".*")_shadowsocksr"_' servers.lua
     sed -i '/Customize Netflix IP Url/d' advanced.lua
+  popd
+  ## 修改部分翻译
+  pushd po/zh-cn/
+    sed -i '/ShadowSocksR Plus+ Settings/d' ssr-plus.po
+    sed -i '/ShadowSocksR Plus+ 设置/d' ssr-plus.po
+    sed -i '/<h3>Support SS/d' ssr-plus.po
+    sed -i '/<h3>支持 SS/d' ssr-plus.po
+    sed -i '/Customize Netflix IP Url/d' ssr-plus.po
+    sed -i '/自定义Netflix IP更新URL（默认项目地址：/d' ssr-plus.po
   popd
   ## 全局替换 ShadowSocksR Plus+ 为 SSRPlus
   ssfiles="$(find 2>"/dev/null")"
