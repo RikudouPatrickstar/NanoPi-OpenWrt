@@ -70,7 +70,7 @@ pushd package/lean/luci-app-ssr-plus
   popd
   ## 修改部分内容
   pushd luasrc/model/cbi/shadowsocksr
-    sed -i 's/Map("shadowsocksr", translate("ShadowSocksR Plus+ Settings"), translate("<h3>Support SS\/SSR\/V2RAY\/TROJAN\/NAIVEPROXY\/SOCKS5\/TUN etc.<\/h3>"))/Map("shadowsocksr", translate("Basic Settings"))/' client.lua
+    sed -i 's_ShadowSocksR Plus+ Settings"), translate(.*))_Basic Settings"))_' client.lua
     sed -i '/Customize Netflix IP Url/d' advanced.lua
   popd
   ## 全局替换 ShadowSocksR Plus+ 为 SSRPlus
