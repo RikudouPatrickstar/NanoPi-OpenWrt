@@ -10,7 +10,12 @@ sed -i '/autoreboot/d' 02_prepare_package.sh
 sed -i '/ramfree/d' 02_prepare_package.sh
 sed -i '/fuck/d' 02_prepare_package.sh
 
-## 调整 AutoCore 补丁
+# 移除 SFE
+sed -i '/shortcut-fe/d' 02_prepare_package.sh
+sed -i '/sfe/d' 02_prepare_package.sh
+sed -i '/fast-classifier/d' 02_prepare_package.sh
+
+# 调整 AutoCore 补丁
 sed -i 's,Others/master/add-openwrt.patch,Others/master/autocore-repatch.patch,' 02_prepare_package.sh
 
 # 替换默认设置
