@@ -118,10 +118,6 @@ pushd package/base-files/files/etc/openclash/core
   chmod +x clash*
 popd
 
-# 腾讯 DDNS
-svn co https://github.com/msylgj/OpenWrt_luci-app/trunk/luci-app-tencentddns package/new/luci-app-tencentddns
-sed -i 's,tencentcloud,services,g' package/new/luci-app-tencentddns/luasrc/controller/tencentddns.lua
-
 # 调整默认 LAN IP
 sed -i 's/192.168.1.1/192.168.24.1/g' package/base-files/files/bin/config_generate
 

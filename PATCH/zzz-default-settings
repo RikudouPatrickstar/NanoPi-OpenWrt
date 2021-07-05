@@ -29,7 +29,7 @@ uci delete dhcp.lan.dhcpv6
 uci delete dhcp.lan.ndp
 uci commit dhcp
 
-# Packet Steering & Set Lan MTU
+# Packet Steering
 uci set network.globals.packet_steering=1
 uci commit network
 /etc/init.d/network restart

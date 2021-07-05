@@ -12,9 +12,9 @@
 
 4. 插件清单：
 
-    - 应用：[`OpenClash`](https://github.com/vernesong/OpenClash) [`Samba4网络共享`](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-samba4) [`SSRPlus`](https://github.com/fw876/helloworld) [`腾讯云DDNS`](https://github.com/msylgj/OpenWrt_luci-app/tree/main/luci-app-tencentddns)
-
-    - 主题：[`luci-theme-argon（默认）`](https://github.com/jerrykuku/luci-theme-argon) [`luci-theme-bootstrap`](https://github.com/openwrt/luci/blob/master/themes/luci-theme-bootstrap)
+    - 应用：[`OpenClash`](https://github.com/vernesong/OpenClash) [`Samba4网络共享`](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-samba4) [`SSRPlus`](https://github.com/fw876/helloworld)
+    
+    - 主题：[`Argon（默认）`](https://github.com/jerrykuku/luci-theme-argon) [`Bootstrap`](https://github.com/openwrt/luci/blob/master/themes/luci-theme-bootstrap)
 
 5. 默认关闭 `IPv6`，移除上游的 [`fuck`](https://github.com/nicholas-opensource/OpenWrt-Autobuild/blob/main/PATCH/new/script/fuck) 等组件
 
