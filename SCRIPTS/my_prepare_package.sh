@@ -92,20 +92,6 @@ rm -fr package/new/OpenClash
 git clone -b master --depth 1 https://github.com/vernesong/OpenClash package/new/OpenClash
 mv package/new/OpenClash/luci-app-openclash package/new/luci-app-openclash
 rm -fr package/new/OpenClash
-## 编译 dashboard
-git clone -b master --single-branch https://github.com/Dreamacro/clash-dashboard.git
-pushd clash-dashboard
-  yarn
-  yarn build
-popd
-mv clash-dashboard/dist ./dashboard-dist
-rm -fr clash-dashboard
-## 使用最新的 dashboard，并调整其默认地址
-pushd package/new/luci-app-openclash/root/usr/share/openclash
-  rm -fr dashboard
-  mv ${OP_SC_DIR}/dashboard-dist ./dashboard
-  sed -i 's,<!--meta name="external-controller" content="http://secret@example.com:9090"-->,<meta name="external-controller" content="http://123456@nanopi-r2s:9090">,' ./dashboard/index.html
-popd
 ## 预置 Clash 内核
 clash_dev_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/Clash | grep /clash-linux-armv8 | sed 's/.*url\": \"//g' | sed 's/\"//g')
 clash_game_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN | grep /clash-linux-armv8 | sed 's/.*url\": \"//g' | sed 's/\"//g')
