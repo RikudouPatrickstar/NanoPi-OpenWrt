@@ -92,6 +92,10 @@ rm -fr package/new/OpenClash
 git clone -b master --depth 1 https://github.com/vernesong/OpenClash package/new/OpenClash
 mv package/new/OpenClash/luci-app-openclash package/new/luci-app-openclash
 rm -fr package/new/OpenClash
+## 控制面板无需输入信息直接打开
+pushd package/new
+  patch -p1 < ${OP_SC_DIR}/../PATCH/0001-clash-dashboard-fix-url.patch
+popd
 ## 编译并使用最新的控制面板
 git clone -b master --single-branch https://github.com/haishanh/yacd.git
 pushd yacd
