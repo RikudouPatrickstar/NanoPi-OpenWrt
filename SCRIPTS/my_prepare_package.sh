@@ -128,9 +128,6 @@ popd
 
 # 调整默认 LAN IP
 sed -i 's/192.168.1.1/192.168.24.1/g' package/base-files/files/bin/config_generate
-
-# 纠正 luci-app-firewall 翻译
-sed -i 's,路由/NAT 卸载,路由/NAT 分载,g' feeds/luci/applications/luci-app-firewall/po/zh_Hans/firewall.po
 ################ 自定义部分 -End- ################
 
 
