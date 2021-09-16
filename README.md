@@ -12,7 +12,7 @@
 
 4. 插件清单：
 
-    - 应用：[`OpenClash`](https://github.com/vernesong/OpenClash/tree/master) [`Samba4网络共享`](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-samba4) [`SSRPlus`](https://github.com/fw876/helloworld/tree/master)
+    - 应用：[`OpenClash`](https://github.com/vernesong/OpenClash/tree/master) [`SSRPlus`](https://github.com/fw876/helloworld/tree/master)
     
     - 主题：[`Argon（默认）`](https://github.com/jerrykuku/luci-theme-argon/tree/master) [`Bootstrap`](https://github.com/openwrt/luci/tree/openwrt-21.02/themes/luci-theme-bootstrap)
 
