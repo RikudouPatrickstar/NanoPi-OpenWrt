@@ -29,8 +29,6 @@ jobs:
       run: |
         echo -e "Total CPU cores\t: $(nproc)"
         cat /proc/cpuinfo | grep 'model name'
-        git clone https://github.com/eembc/coremark.git
-        cd coremark && make > '/dev/null' && ./coremark.exe
     - name: Free Disk Space
       run: |
         sudo -E swapoff -a
