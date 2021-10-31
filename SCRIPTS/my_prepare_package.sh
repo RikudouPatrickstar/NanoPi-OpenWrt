@@ -10,9 +10,6 @@ sed -i '/autoreboot/d' 02_prepare_package.sh
 sed -i '/ramfree/d' 02_prepare_package.sh
 sed -i '/fuck/d' 02_prepare_package.sh
 
-# 调整 AutoCore 补丁
-sed -i 's,Others/master/add-openwrt.patch,Others/master/autocore-repatch.patch,' 02_prepare_package.sh
-
 # 替换默认设置
 pushd ${OP_SC_DIR}/../PATCH/duplicate/addition-trans-zh-r2s/files
   rm -f zzz-default-settings
@@ -92,10 +89,6 @@ rm -fr package/new/OpenClash
 git clone -b master --depth 1 https://github.com/vernesong/OpenClash package/new/OpenClash
 mv package/new/OpenClash/luci-app-openclash package/new/luci-app-openclash
 rm -fr package/new/OpenClash
-## 控制面板无需输入信息直接打开
-pushd package/new
-  patch -p1 < ${OP_SC_DIR}/../PATCH/0001-clash-dashboard-fix-url.patch
-popd
 ## 编译并使用最新的控制面板
 git clone -b master --single-branch https://github.com/haishanh/yacd.git
 pushd yacd
