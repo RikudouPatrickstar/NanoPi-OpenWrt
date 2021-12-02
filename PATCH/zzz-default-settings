@@ -48,11 +48,11 @@ sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 
 # OpenClash
-uci set openclash.config.core_version='linux-armv8'
-#uci set openclash.config.en_mode='fake-ip'
-#uci set openclash.config.operation_mode='fake-ip'
-uci set openclash.config.log_level='info'
-uci commit openclash
+# uci set openclash.config.core_version='linux-armv8'
+# #uci set openclash.config.en_mode='fake-ip'
+# #uci set openclash.config.operation_mode='fake-ip'
+# uci set openclash.config.log_level='info'
+# uci commit openclash
 
 # Others
 ln -sf /sbin/ip /usr/bin/ip
