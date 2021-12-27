@@ -16,6 +16,10 @@ sed -i 's,downloads.openwrt.org,mirror.sjtu.edu.cn/openwrt,g' /etc/opkg/distfeed
 # uHTTPd
 uci set uhttpd.main.rfc1918_filter=0
 uci set uhttpd.main.redirect_https=0
+uci set uhttpd.main.http_keepalive=0
+uci set uhttpd.main.tcp_keepalive=0
+uci set uhttpd.main.script_timeout=65535
+uci set uhttpd.main.script_network_timeout=65535
 uci commit uhttpd
 /etc/init.d/uhttpd restart
 
