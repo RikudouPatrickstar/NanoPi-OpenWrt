@@ -28,7 +28,7 @@ pushd package/base-files/files
     touch log mac mark
     ## 配置标记文件
     echo "versionsh_l=${shellclash_version}" >> mark
-    echo "update_url=https://cdn.jsdelivr.net/gh/juewuy/ShellClash@master" >> mark
+    echo "update_url=https://cdn.jsdelivr.net/gh/juewuy/ShellClash" >> mark
     echo "userguide=1" >> mark
     echo "redir_mod=混合模式" >> mark
     echo "clashcore=clashpre" >> mark
