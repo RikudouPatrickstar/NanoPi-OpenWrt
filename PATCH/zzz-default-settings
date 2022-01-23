@@ -58,6 +58,9 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 # uci set openclash.config.log_level='info'
 # uci commit openclash
 
+# Vim
+sed -i 's/set mouse/"set mouse/g' /usr/share/vim/vim82/defaults.vim
+
 # Others
 ln -sf /sbin/ip /usr/bin/ip
 ln -sf /usr/bin/wget /usr/bin/wget-ssl
