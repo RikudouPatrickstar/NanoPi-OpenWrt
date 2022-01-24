@@ -17,7 +17,7 @@ pushd package/base-files/files
     ## 启动文件
     mv clashservice ../init.d/clash
     ## 地址库
-    wget https://github.com/juewuy/ShellClash/raw/master/bin/Country.mmdb -q -O Country.mmdb
+    wget https://github.com/Hackl0us/GeoIP2-CN/raw/release/Country.mmdb -q -O Country.mmdb
     ## 控制面板
     wget https://github.com/juewuy/ShellClash/raw/master/bin/clashdb.tar.gz -q -O clashdb.tar.gz
     tar -zxvf clashdb.tar.gz -C ui
@@ -35,6 +35,8 @@ pushd package/base-files/files
     echo "hostdir=':9999/ui'" >> mark
     echo "dns_nameserver='https://223.5.5.5/dns-query, https://doh.pub/dns-query, tls://dns.rubyfish.cn:853'" >> mark
     echo "dns_fallback='https://1.0.0.1/dns-query, https://8.8.4.4/dns-query, https://doh.opendns.com/dns-query'" >> mark
+    echo "Geo_v=$(date +'%Y%m%d%H%M')" >> mark
+    echo "geotype=cn_mini.mmdb" >> mark
     echo "cpucore=armv8" >> mark
     ## 清理
     rm -fr ShellClash
