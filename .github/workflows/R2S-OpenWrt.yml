@@ -68,6 +68,8 @@ jobs:
         /bin/bash 01_get_ready.sh
         cp -r ./SCRIPTS/* ./openwrt/
     - name: Prepare Package
+      env:
+        TZ: Asia/Shanghai
       run: |
         cd ./openwrt/
         /bin/bash my_prepare_package.sh
@@ -113,11 +115,8 @@ jobs:
         make -j${make_process} V=m || make -j${make_process} V=m || make -j1 V=s
     - name: Package Artifact
       run: |
-        mv ./openwrt/.config ./openwrt/bin/targets/rockchip/armv8/config-full.buildinfo
-        cd ./openwrt/bin/targets/rockchip/armv8/
-        gzip -d *.gz && exit 0
-        gzip *.img
-        rm -rf ./packages/
+        cd ./openwrt/
+        sudo -E /bin/bash my_package_artifact.sh
     - name: Upload Artifact
       uses: actions/upload-artifact@main
       with:
