@@ -8,6 +8,8 @@ on:
       - 'PATCH/**'
       - 'SCRIPTS/**'
       - 'SEED/**'
+env:
+  TZ: Asia/Shanghai
 jobs:
   build:
     runs-on: ubuntu-20.04
@@ -16,8 +18,6 @@ jobs:
       uses: actions/checkout@main
     - name: Generate Information
       id: gen_info
-      env:
-        TZ: Asia/Shanghai
       run: |
         release_tag="$(date +%Y-%m-%d_%H-%M)"
         release_name="R2S-OpenWrt_v21.02_$release_tag"
@@ -68,8 +68,6 @@ jobs:
         /bin/bash 01_get_ready.sh
         cp -r ./SCRIPTS/* ./openwrt/
     - name: Prepare Package
-      env:
-        TZ: Asia/Shanghai
       run: |
         cd ./openwrt/
         /bin/bash my_prepare_package.sh
