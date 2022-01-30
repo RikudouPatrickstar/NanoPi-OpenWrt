@@ -6,13 +6,12 @@ pushd package/base-files/files
   mkdir -p etc/clash
   mkdir -p etc/clash/ui
   mkdir -p etc/init.d
-  shellclash_version=$(curl -sL https://api.github.com/repos/juewuy/ShellClash/releases/latest | grep tag_name | sed 's/.* "//;s/".*//')
+  shellclash_version=$(curl -sL https://github.com/juewuy/ShellClash/raw/master/bin/version | grep "versionsh" | awk -F "=" '{print $2}')
   pushd etc/clash
     ## 脚本及 Clash Premium Core
-    svn co https://github.com/juewuy/ShellClash/tags/${shellclash_version}/scripts .
-    rm -fr .svn clash.service clashservice
-    wget https://github.com/RikudouPatrickstar/ShellClash/raw/patch-2/scripts/clashservice -q -O clashservice
-    wget https://github.com/juewuy/ShellClash/raw/${shellclash_version}/bin/clashpre/clash-linux-armv8 -q -O clash
+    svn co https://github.com/juewuy/ShellClash/trunk/scripts .
+    rm -fr .svn clash.service
+    wget https://github.com/juewuy/ShellClash/raw/master/bin/clashpre/clash-linux-armv8 -q -O clash
     chmod 777 *
     ## 启动文件
     mv clashservice ../init.d/clash
@@ -28,7 +27,7 @@ pushd package/base-files/files
     touch log mac mark
     ## 配置标记文件
     echo "versionsh_l=${shellclash_version}" >> mark
-    echo "update_url=https://cdn.jsdelivr.net/gh/juewuy/ShellClash" >> mark
+    echo "update_url=http://shellclash.ga/" >> mark
     echo "userguide=1" >> mark
     echo "redir_mod=混合模式" >> mark
     echo "clashcore=clashpre" >> mark
