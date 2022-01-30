@@ -35,9 +35,6 @@ sed -i '/<a href=\"https:\/\/github.com\/openwrt\/luci\">/d' feeds/luci/themes/l
 # Argon 主题
 bash ${OP_SC_DIR}/../PATCH/app/Argon.sh
 
-# v2rayA
-bash ${OP_SC_DIR}/../PATCH/app/v2rayA.sh
-
 # ShellClash
 bash ${OP_SC_DIR}/../PATCH/app/ShellClash.sh
 
