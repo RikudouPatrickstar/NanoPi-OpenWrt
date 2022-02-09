@@ -5,10 +5,7 @@ OP_SC_DIR=$(pwd)
 
 ################ 修改 Nick 的源码 -Start- ################
 # 移除多余组件
-sed -i '/coremark/d' 02_prepare_package.sh
-sed -i '/autoreboot/d' 02_prepare_package.sh
-sed -i '/ramfree/d' 02_prepare_package.sh
-sed -i '/fuck/d' 02_prepare_package.sh
+sed -i '/coremark/,/fuck/d' 02_prepare_package.sh
 
 # 替换默认设置
 pushd ${OP_SC_DIR}/../PATCH/duplicate/addition-trans-zh-r2s/files
@@ -37,9 +34,6 @@ bash ${OP_SC_DIR}/../PATCH/app/Argon.sh
 
 # ShellClash
 bash ${OP_SC_DIR}/../PATCH/app/ShellClash.sh
-
-# 移除 SSRPlus
-rm -fr package/lean/luci-app-ssr-plus
 
 # 调整默认 LAN IP
 sed -i 's/192.168.1.1/192.168.24.1/g' package/base-files/files/bin/config_generate
