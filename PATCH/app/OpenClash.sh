@@ -31,9 +31,9 @@ clash_game_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/relea
 clash_premium_url=$(curl -sL https://api.github.com/repos/vernesong/OpenClash/releases/tags/TUN-Premium | grep /clash-linux-armv8 | sed 's/.*url\": \"//g' | sed 's/\"//g')
 mkdir -p package/base-files/files/etc/openclash/core
 pushd package/base-files/files/etc/openclash/core
-  wget -qO- $clash_dev_url | tar xOvz > clash
-  wget -qO- $clash_game_url | tar xOvz > clash_game
-  wget -qO- $clash_premium_url | gunzip -c > clash_tun
+  wget $clash_dev_url -O - | tar xOvz > clash
+  wget $clash_game_url -O - | tar xOvz > clash_game
+  wget $clash_premium_url -O - | gunzip -c > clash_tun
   chmod +x clash*
 popd
 
