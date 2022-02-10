@@ -26,9 +26,6 @@ popd
 sed -i 's/+luci-app-opkg //' ./feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/' ./feeds/luci/collections/luci/Makefile
 
-# Bootstrap 主题移除底部文字
-sed -i '/<a href=\"https:\/\/github.com\/openwrt\/luci\">/d' feeds/luci/themes/luci-theme-bootstrap/luasrc/view/themes/bootstrap/footer.htm
-
 # Argon 主题
 bash ${OP_SC_DIR}/../PATCH/app/Argon.sh
 
