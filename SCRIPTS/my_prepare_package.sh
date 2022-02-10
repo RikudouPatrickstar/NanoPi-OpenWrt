@@ -3,16 +3,13 @@
 OP_SC_DIR=$(pwd)
 
 
-################ 修改 Nick 的源码 -Start- ################
+################ 修改 Nick 的脚本 -Start- ################
+# 创建插件存放目录
+mkdir -p package/new
+
 # 移除多余组件
 sed -i '/coremark/,/fuck/d' 02_prepare_package.sh
-
-# 替换默认设置
-pushd ${OP_SC_DIR}/../PATCH/duplicate/addition-trans-zh-r2s/files
-  rm -f zzz-default-settings
-  cp ${OP_SC_DIR}/../PATCH/zzz-default-settings ./
-popd
-################ 修改 Nick 的源码 -End- ################
+################ 修改 Nick 的脚本 -End- ################
 
 
 ################ 执行 02 脚本 -Start- ################

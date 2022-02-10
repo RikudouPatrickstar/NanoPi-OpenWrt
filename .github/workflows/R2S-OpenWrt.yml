@@ -50,16 +50,14 @@ jobs:
         wget -qO - https://raw.githubusercontent.com/friendlyarm/build-env-on-ubuntu-bionic/master/install.sh | sed 's/python-/python3-/g' | /bin/bash
         sudo -E apt-get clean -y
         git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
-    - name: Setup Node
-      uses: actions/setup-node@v2
-      with:
-        node-version: '14'
     - name: Merge Nick's Code
       run: |
         git clone --single-branch -b main https://github.com/nicholas-opensource/OpenWrt-Autobuild.git
         mv ./OpenWrt-Autobuild/SCRIPTS/* ./SCRIPTS/
         mv ./SCRIPTS/R2S/* ./SCRIPTS/
+        sed -i 's,package/lean,package/new,g' ./SCRIPTS/*.sh
         mv ./OpenWrt-Autobuild/PATCH/* ./PATCH/
+        mv -f ./PATCH/zzz-default-settings ./PATCH/duplicate/addition-trans-zh-r2s/files/
         rm -rf ./OpenWrt-Autobuild/
     - name: Get OpenWrt Code
       run: |
