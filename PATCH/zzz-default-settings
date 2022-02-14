@@ -65,7 +65,6 @@ ifdown lan && ifup lan
 # Samba4
 uci set samba4.@samba[0].interface='lan'
 uci set samba4.@samba[0].macos='1'
-uci set samba4.@samba[0].allow_legacy_protocols='1'
 uci set samba4.@samba[0].disable_netbios='1'
 uci commit samba4
 
