@@ -2,7 +2,7 @@
 #
 # 主要用于在本地修改 config，取消最后一段注释也可以用于本地编译
 #
-# wget -q https://cdn.jsdelivr.net/gh/RikudouPatrickstar/R2S-OpenWrt/SCRIPTS/build.sh -O build.sh && chmod +x build.sh && ./build.sh
+# wget -q https://github.com/RikudouPatrickstar/R2S-OpenWrt/raw/master/SCRIPTS/build.sh -O build.sh && chmod +x build.sh && ./build.sh
 #
 
 # Clone Repository
@@ -14,7 +14,9 @@ cd ./R2S-OpenWrt/
 git clone https://github.com/nicholas-opensource/OpenWrt-Autobuild.git
 mv ./OpenWrt-Autobuild/SCRIPTS/* ./SCRIPTS/
 mv ./SCRIPTS/R2S/* ./SCRIPTS/
+sed -i 's,package/lean,package/new,g' ./SCRIPTS/*.sh
 mv ./OpenWrt-Autobuild/PATCH/* ./PATCH/
+mv -f ./PATCH/zzz-default-settings ./PATCH/duplicate/addition-trans-zh-r2s/files/
 rm -rf ./OpenWrt-Autobuild/
 
 # Get OpenWrt Code

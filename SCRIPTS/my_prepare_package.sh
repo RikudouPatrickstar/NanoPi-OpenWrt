@@ -27,7 +27,7 @@ sed -i 's/+luci-app-opkg //' ./feeds/luci/collections/luci/Makefile
 sed -i 's/luci-theme-bootstrap/luci-theme-argon/' ./feeds/luci/collections/luci/Makefile
 
 # 去除多余信息显示
-sed -i '/Target Platform/d' ./feeds/luci/modules/luci-mod-status/htdocs/luci-static/resources/view/status/include/10_system.js
+sed -i '/Target Platform/d' ./package/emortal/autocore/files/*/rpcd_10_system.js
 
 # Argon 主题
 bash ${OP_SC_DIR}/../PATCH/app/Argon.sh
