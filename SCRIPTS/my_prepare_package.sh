@@ -8,7 +8,7 @@ OP_SC_DIR=$(pwd)
 mkdir -p package/new
 
 # 移除多余组件
-sed -i '/coremark/,/fuck/d' 02_prepare_package.sh
+sed -i '/Autoreboot/,/fuck/d' 02_prepare_package.sh
 
 # 换回官方 rtl8152-vendor
 sed -i '/8152/d' 02_R2S.sh
