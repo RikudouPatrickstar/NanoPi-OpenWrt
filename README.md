@@ -12,11 +12,11 @@
 
 4. 插件清单：
 
-    - 应用：[`Samba4`](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-samba4) [`ShellClash`](https://github.com/juewuy/ShellClash)
+    - 应用：[`Samba4`](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-samba4) [`ShellClash`](https://github.com/juewuy/ShellClash) [`v2rayA`](https://github.com/openwrt/packages/tree/master/net/v2raya)
     
     - 主题：[`Argon`](https://github.com/jerrykuku/luci-theme-argon/tree/master)
 
-5. 默认关闭 `IPv6`，移除上游的 [`fuck`](https://github.com/nicholas-opensource/OpenWrt-Autobuild/blob/main/PATCH/new/script/fuck) 等组件
+5. 默认关闭 `IPv6`，移除上游的 [`Autoreboot`](https://github.com/immortalwrt/luci/tree/openwrt-21.02/applications/luci-app-autoreboot) [`Ram-free`](https://github.com/immortalwrt/luci/tree/openwrt-21.02/applications/luci-app-ramfree) [`fuck`](https://github.com/nicholas-opensource/OpenWrt-Autobuild/blob/main/PATCH/new/script/fuck) 等组件
 
 ## 感谢
 

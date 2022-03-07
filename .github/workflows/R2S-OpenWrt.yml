@@ -52,10 +52,9 @@ jobs:
         git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
     - name: Merge Nick's Code
       run: |
-        git clone --single-branch -b main https://github.com/nicholas-opensource/OpenWrt-Autobuild.git
+        git clone --single-branch -b Sino https://github.com/nicholas-opensource/OpenWrt-Autobuild.git
         mv ./OpenWrt-Autobuild/SCRIPTS/* ./SCRIPTS/
         mv ./SCRIPTS/R2S/* ./SCRIPTS/
-        sed -i 's,package/lean,package/new,g' ./SCRIPTS/*.sh
         mv ./OpenWrt-Autobuild/PATCH/* ./PATCH/
         mv -f ./PATCH/zzz-default-settings ./PATCH/duplicate/addition-trans-zh-r2s/files/
         rm -rf ./OpenWrt-Autobuild/
