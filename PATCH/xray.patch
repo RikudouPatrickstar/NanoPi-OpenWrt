@@ -1,0 +1,116 @@
+From 359920d85f151204eef3114c1558a965192e2494 Mon Sep 17 00:00:00 2001
+From: RikudouPatrickstar
+ <68163551+RikudouPatrickstar@users.noreply.github.com>
+Date: Wed, 9 Mar 2022 14:57:32 +0800
+Subject: [PATCH] xray
+
+---
+ Makefile | 77 --------------------------------------------------------
+ 1 file changed, 77 deletions(-)
+
+diff --git a/Makefile b/Makefile
+index 7fb3544..3a2917c 100644
+--- a/Makefile
++++ b/Makefile
+@@ -38,20 +38,6 @@ define Package/xray-core
+   DEPENDS:=$(GO_ARCH_DEPENDS) +ca-bundle
+ endef
+ 
+-define Package/xray-example
+-  $(call Package/xray/template)
+-  TITLE+= (example configs)
+-  DEPENDS:=xray-core
+-  PKGARCH:=all
+-endef
+-
+-define Package/xray-geodata
+-  $(call Package/xray/template)
+-  TITLE+= (geodata files)
+-  DEPENDS:=xray-core
+-  PKGARCH:=all
+-endef
+-
+ define Package/xray/description
+   Xray, Penetrates Everything. It helps you to build your own computer network.
+   It secures your network connections and thus protects your privacy.
+@@ -61,77 +47,14 @@ define Package/xray-core/description
+   $(call Package/xray/description)
+ endef
+ 
+-define Package/xray-example/description
+-  $(call Package/xray/description)
+-
+-  This includes example configuration files for xray-core.
+-endef
+-
+-define Package/xray-geodata/description
+-  $(call Package/xray/description)
+-
+-  This includes GEO datas used for xray-core.
+-endef
+-
+-define Package/xray-core/conffiles
+-/etc/xray/
+-/etc/config/xray
+-endef
+-
+-GEOIP_VER:=202202030030
+-GEOIP_FILE:=geoip.dat.$(GEOIP_VER)
+-
+-define Download/geoip
+-  URL:=https://github.com/v2fly/geoip/releases/download/$(GEOIP_VER)/
+-  URL_FILE:=geoip.dat
+-  FILE:=$(GEOIP_FILE)
+-  HASH:=6250675cac06d8c032f7f5203666fd2f72476b60886b28657e10b0e12deae8bc
+-endef
+-
+-GEOSITE_VER:=20220201175515
+-GEOSITE_FILE:=dlc.dat.$(GEOSITE_VER)
+-
+-define Download/geosite
+-  URL:=https://github.com/v2fly/domain-list-community/releases/download/$(GEOSITE_VER)/
+-  URL_FILE:=dlc.dat
+-  FILE:=$(GEOSITE_FILE)
+-  HASH:=697e78c8c0dab19f08ae17ba6aa9c7c50dcb9be566bb9a314aa9f5da29d76200
+-endef
+-
+ define Build/Prepare
+ 	$(call Build/Prepare/Default)
+-ifneq ($(CONFIG_PACKAGE_xray-geodata),)
+-	$(call Download,geoip)
+-	$(call Download,geosite)
+-endif
+ endef
+ 
+ define Package/xray-core/install
+ 	$(call GoPackage/Package/Install/Bin,$(PKG_INSTALL_DIR))
+ 	$(INSTALL_DIR) $(1)/usr/bin/
+ 	$(INSTALL_BIN) $(PKG_INSTALL_DIR)/usr/bin/main $(1)/usr/bin/xray
+-
+-	$(INSTALL_DIR) $(1)/etc/xray/
+-	$(INSTALL_DATA) $(CURDIR)/files/config.json.example $(1)/etc/xray/
+-
+-	$(INSTALL_DIR) $(1)/etc/config/
+-	$(INSTALL_CONF) $(CURDIR)/files/xray.conf $(1)/etc/config/xray
+-	$(INSTALL_DIR) $(1)/etc/init.d/
+-	$(INSTALL_BIN) $(CURDIR)/files/xray.init $(1)/etc/init.d/xray
+-endef
+-
+-define Package/xray-example/install
+-	$(INSTALL_DIR) $(1)/etc/xray/
+-	$(INSTALL_DATA) $(CURDIR)/files/vpoint_socks_vmess.json $(1)/etc/xray/
+-	$(INSTALL_DATA) $(CURDIR)/files/vpoint_vmess_freedom.json $(1)/etc/xray/
+-endef
+-
+-define Package/xray-geodata/install
+-	$(INSTALL_DIR) $(1)/usr/share/xray/
+-	$(INSTALL_DATA) $(DL_DIR)/$(GEOIP_FILE) $(1)/usr/share/xray/geoip.dat
+-	$(INSTALL_DATA) $(DL_DIR)/$(GEOSITE_FILE) $(1)/usr/share/xray/geosite.dat
+ endef
+ 
+ $(eval $(call BuildPackage,xray-core))
+-$(eval $(call BuildPackage,xray-example))
+-$(eval $(call BuildPackage,xray-geodata))
+-- 
+2.25.1
+

@@ -31,8 +31,10 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/' ./feeds/luci/collections/luci/
 sed -i '/Target Platform/d' ./package/emortal/autocore/files/*/rpcd_10_system.js
 
 # 移除 xray-core 不必要的文件
-sed -i '109,127d' ./feeds/packages/net/xray-core/Makefile
-rm -fr ./feeds/packages/net/xray-core/files
+pushd feeds/packages/net/xray-core
+    patch -p1 < ${OP_SC_DIR}/../PATCH/xray.patch
+    rm -fr ./files
+popd
 
 # Argon 主题
 bash ${OP_SC_DIR}/../PATCH/app/Argon.sh
