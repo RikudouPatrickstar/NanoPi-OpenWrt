@@ -52,7 +52,7 @@ jobs:
         git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
     - name: Merge Nick's Code
       run: |
-        git clone --single-branch -b Sino https://github.com/RikudouPatrickstar/Nicholas-OpenWrt.git
+        git clone --single-branch -b Sino https://github.com/RikudouPatrickstar/Nicholas-OpenWrt.git OpenWrt-Autobuild
         mv ./OpenWrt-Autobuild/SCRIPTS/* ./SCRIPTS/
         mv ./SCRIPTS/R2S/* ./SCRIPTS/
         mv ./OpenWrt-Autobuild/PATCH/* ./PATCH/
