@@ -35,6 +35,8 @@ pushd feeds/packages/net/xray-core
     patch -p1 < ${OP_SC_DIR}/../PATCH/xray.patch
     rm -fr ./files
 popd
+# 添加 v2rayA 开关
+mv ${OP_SC_DIR}/../PATCH/v2rayA package/base-files/files/bin/v2rayA
 
 # Argon 主题
 bash ${OP_SC_DIR}/../PATCH/app/Argon.sh

@@ -1,0 +1,19 @@
+#!/bin/sh
+
+addr="$(uci get network.lan.ipaddr)"
+port="$(uci get v2raya.config.address | sed 's/.*://')"
+
+if [ -n "$(ps | grep v2raya | grep -v grep)" ];then
+    uci set v2raya.config.enabled='0'
+    uci commit v2raya
+    /etc/init.d/v2raya stop
+    echo "v2rayA has been stoped."
+else
+    uci set v2raya.config.enabled='1'
+    uci commit v2raya
+    /etc/init.d/v2raya start
+    echo "v2rayA has been started."
+    echo -e "\033[36;4mhttp://${addr}:${port}/\033[0m"
+fi
+
+exit 0
