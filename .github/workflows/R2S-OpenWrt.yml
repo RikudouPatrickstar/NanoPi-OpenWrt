@@ -21,10 +21,9 @@ jobs:
       run: |
         release_tag="$(date +%Y-%m-%d_%H-%M)"
         release_name="R2S-OpenWrt_v21.02_$release_tag"
-        release_description="${{ secrets.DESC }}"
         echo "##[set-output name=release_tag;]$release_tag"
         echo "##[set-output name=release_name;]$release_name"
-        echo "##[set-output name=release_description;]$release_description"
+        tail -n 20 README.md > DESC.md 
     - name: Show CPU Info
       run: |
         echo -e "Total CPU cores\t: $(nproc)"
@@ -123,5 +122,5 @@ jobs:
         artifacts: ./openwrt/bin/targets/rockchip/armv8/*
         name: ${{ steps.gen_info.outputs.release_name }}
         tag: ${{ steps.gen_info.outputs.release_tag }}
-        body: ${{ steps.gen_info.outputs.release_description }}
+        bodyFile: ./DESC.md
         token: ${{ secrets.GITHUB_TOKEN }}
