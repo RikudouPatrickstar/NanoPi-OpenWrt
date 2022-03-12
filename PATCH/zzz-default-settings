@@ -110,4 +110,14 @@ opkg flag hold dnsmasq-full
 rm -rf /tmp/luci-modulecache
 rm -f /tmp/luci-indexcache
 
+# Private Settings
+my_device='/dev/sda1'
+my_dir='/mnt/share'
+my_script="${my_dir}/init.sh"
+if [ -b "${my_device}" ];then
+    mkdir ${my_dir}
+    mount ${my_device} ${my_dir}
+    [ -f "${my_script}" ] && sh ${my_script}
+fi
+
 exit 0
