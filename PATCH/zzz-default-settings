@@ -87,13 +87,6 @@ uci set samba4.@samba[0].macos='1'
 uci set samba4.@samba[0].disable_netbios='1'
 uci commit samba4
 
-# v2rayA
-uci set v2raya.config.log_max_days="1"
-uci set v2raya.config.log_level="warning"
-uci set v2raya.config.ipv6_support="off"
-uci commit v2raya
-/etc/init.d/v2raya reload
-
 # Vim
 sed -i 's/set mouse/"set mouse/g' /usr/share/vim/vim82/defaults.vim
 

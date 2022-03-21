@@ -8,8 +8,7 @@ OP_SC_DIR=$(pwd)
 mkdir -p package/new
 
 # 移除多余组件
-sed -i '/Autoreboot/,/ln.*ramfree/d' 02_prepare_package.sh
-sed -i '/Lets Fuck/,/fuck/d' 02_prepare_package.sh
+sed -i '/Autoreboot/,/fuck/d' 02_prepare_package.sh
 
 # 换回官方 rtl8152-vendor
 sed -i '/8152/d' 02_R2S.sh
@@ -29,14 +28,6 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/' ./feeds/luci/collections/luci/
 
 # 去除多余信息显示
 sed -i '/Target Platform/d' ./package/emortal/autocore/files/*/rpcd_10_system.js
-
-# 移除 xray-core 不必要的文件
-pushd feeds/packages/net/xray-core
-    patch -p1 < ${OP_SC_DIR}/../PATCH/xray.patch
-    rm -fr ./files
-popd
-# 添加 v2rayA 开关
-mv ${OP_SC_DIR}/../PATCH/v2rayA package/base-files/files/bin/v2rayA
 
 # Argon 主题
 bash ${OP_SC_DIR}/../PATCH/app/Argon.sh

@@ -12,7 +12,7 @@
 
 4. 插件清单：
 
-    - 应用：[`Samba4`](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-samba4) [`ShellClash`](https://github.com/juewuy/ShellClash) [`v2rayA`](https://github.com/openwrt/packages/tree/master/net/v2raya)
+    - 应用：[`Samba4`](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-samba4) [`ShellClash`](https://github.com/juewuy/ShellClash)
     
     - 主题：[`Argon`](https://github.com/jerrykuku/luci-theme-argon/tree/master)
 
