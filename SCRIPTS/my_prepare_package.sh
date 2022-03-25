@@ -12,6 +12,10 @@ sed -i '/Autoreboot/,/fuck/d' 02_prepare_package.sh
 
 # 换回官方 rtl8152-vendor
 sed -i '/8152/d' 02_R2S.sh
+
+# 调整核心频率为 1.6 GHz
+sed -i '/rk3328-enable-1512/d' 02_R2S.sh
+sed -i '/rk3328-enable-1608/s/^#//' 02_R2S.sh
 ################ 修改 Nick 的脚本 -End- ################
 
 
