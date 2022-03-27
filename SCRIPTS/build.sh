@@ -11,10 +11,9 @@ git clone -b master --single-branch https://github.com/RikudouPatrickstar/R2S-Op
 cd ./R2S-OpenWrt/
 
 # Merge Nick's Code
-git clone https://github.com/nicholas-opensource/OpenWrt-Autobuild.git
+git clone --single-branch -b Sino https://github.com/RikudouPatrickstar/Nicholas-OpenWrt.git OpenWrt-Autobuild
 mv ./OpenWrt-Autobuild/SCRIPTS/* ./SCRIPTS/
 mv ./SCRIPTS/R2S/* ./SCRIPTS/
-sed -i 's,package/lean,package/new,g' ./SCRIPTS/*.sh
 mv ./OpenWrt-Autobuild/PATCH/* ./PATCH/
 mv -f ./PATCH/zzz-default-settings ./PATCH/duplicate/addition-trans-zh-r2s/files/
 rm -rf ./OpenWrt-Autobuild/
@@ -36,10 +35,19 @@ bash 05_create_acl_for_luci.sh -a
 mv ../SEED/config.seed .config
 make defconfig
 
+# Smart Chmod
+MY_Filter=$(mktemp)
+echo '/\.git' >  ${MY_Filter}
+echo '/\.svn' >> ${MY_Filter}
+find ./ -maxdepth 1 | grep -v '\./$' | grep -v '/\.git' | xargs -s1024 chmod -R u=rwX,og=rX
+find ./ -type f | grep -v -f ${MY_Filter} | xargs -s1024 file | grep 'executable\|ELF' | cut -d ':' -f1 | xargs -s1024 chmod 755
+rm -f ${MY_Filter}
+unset MY_Filter
+        
 # # Make Download
-# make download -j10
+# make download -j48
 
-# # Compile Openwrt
+# Compile Openwrt
 # let make_process=$(nproc)+1
 # make toolchain/install -j${make_process} V=m
 # make -j${make_process} V=m || make -j${make_process} V=m || make -j1 V=s
