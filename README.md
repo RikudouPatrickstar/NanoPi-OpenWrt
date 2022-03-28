@@ -10,7 +10,7 @@
 
 4. 插件清单：
 
-    - 应用：[`Samba4`](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-samba4) [`Wake-on-LAN`](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-wol) [`ShellClash`](https://github.com/juewuy/ShellClash)
+    - 应用：[`Samba4`](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-samba4) [`TencentDDNS`](https://github.com/msylgj/OpenWrt_luci-app/tree/main/luci-app-tencentddns) [`Wake-on-LAN`](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-wol) [`ShellClash`](https://github.com/juewuy/ShellClash)
     
     - 主题：[`Argon`](https://github.com/jerrykuku/luci-theme-argon/tree/master)
 

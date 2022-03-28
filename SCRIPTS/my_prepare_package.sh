@@ -39,6 +39,9 @@ bash ${OP_SC_DIR}/../PATCH/app/Argon.sh
 # ShellClash
 bash ${OP_SC_DIR}/../PATCH/app/ShellClash.sh
 
+# 腾讯云 DDNS
+svn export https://github.com/msylgj/OpenWrt_luci-app/trunk/luci-app-tencentddns package/new/luci-app-tencentddns
+
 # 调整默认 LAN IP
 sed -i 's/192.168.1.1/192.168.24.1/g' package/base-files/files/bin/config_generate
 ################ 自定义部分 -End- ################
