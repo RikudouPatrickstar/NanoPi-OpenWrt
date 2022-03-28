@@ -51,8 +51,8 @@ uci add_list dhcp.wan.ra_flags='none'
 
 # LAN DHCP
 uci del dhcp.lan.ra_slaac
-uci set dhcp.lan.start='10'
-uci set dhcp.lan.limit='240'
+uci set dhcp.lan.start='30'
+uci set dhcp.lan.limit='220'
 uci set dhcp.lan.leasetime='2h'
 uci del dhcp.lan.ra_flags
 uci add_list dhcp.lan.ra_flags='none'
@@ -91,9 +91,9 @@ uci commit samba4
 sed -i 's/set mouse/"set mouse/g' /usr/share/vim/vim82/defaults.vim
 
 # Others
-ln -sf /sbin/ip /usr/bin/ip
-ln -sf /usr/bin/wget /usr/bin/wget-ssl
-ln -sf /usr/bin/vim /usr/bin/vi
+[ ! -f '/usr/bin/ip' ] && [ -f '/sbin/ip' ] && ln -sf /sbin/ip /usr/bin/ip
+[ ! -f '/usr/bin/wget-ssl' ] && [ -f '/usr/bin/wget' ] && ln -sf /usr/bin/wget /usr/bin/wget-ssl
+[ ! -f '/usr/bin/vi' ] && [ -f '/usr/bin/vim' ] && ln -sf /usr/bin/vim /usr/bin/vi
 opkg flag hold luci-app-firewall
 opkg flag hold firewall
 opkg flag hold dnsmasq-full
