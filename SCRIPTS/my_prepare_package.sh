@@ -39,6 +39,9 @@ bash ${OP_SC_DIR}/../PATCH/app/Argon.sh
 # ShellClash
 bash ${OP_SC_DIR}/../PATCH/app/ShellClash.sh
 
+# frpc
+bash ${OP_SC_DIR}/../PATCH/app/frpc.sh
+
 # Wake-on-LAN-plus
 svn export https://github.com/msylgj/OpenWrt_luci-app/trunk/luci-app-services-wolplus package/new/luci-app-services-wolplus
 
