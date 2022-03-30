@@ -14,7 +14,7 @@
     
     - 主题：[`Argon`](https://github.com/jerrykuku/luci-theme-argon/tree/master)
 
-5. 默认关闭 `IPv6`，移除上游的 [`Autoreboot`](https://github.com/immortalwrt/luci/tree/openwrt-21.02/applications/luci-app-autoreboot) [`Ram-free`](https://github.com/immortalwrt/luci/tree/openwrt-21.02/applications/luci-app-ramfree) [`SSRPlus`](https://github.com/fw876/helloworld) [`fuck`](https://github.com/nicholas-opensource/OpenWrt-Autobuild/blob/Sino/PATCH/new/script/fuck) 等组件
+5. 默认关闭 `IPv6`，移除上游[部分](https://github.com/RikudouPatrickstar/R2S-OpenWrt/blob/master/SCRIPTS/my_prepare_package.sh#L10)组件
 
 ## 感谢
 
