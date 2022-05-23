@@ -8,9 +8,9 @@ pushd package/base-files/files
   mkdir -p etc/init.d
   shellclash_version=$(curl -sL https://raw.githubusercontent.com/juewuy/ShellClash/master/bin/version | grep "versionsh" | awk -F "=" '{print $2}')
   pushd etc/clash
-    ## 脚本及 Clash Premium Core
+    ## 脚本及 Clash Meta Core
     wget https://raw.githubusercontent.com/juewuy/ShellClash/master/bin/clashfm.tar.gz -O - | tar xz -C ./
-    wget https://raw.githubusercontent.com/juewuy/ShellClash/master/bin/clashpre/clash-linux-armv8 -O clash
+    wget https://raw.githubusercontent.com/juewuy/ShellClash/master/bin/clash.meta/clash-linux-armv8 -O clash
     chmod 777 *
     ## 启动文件
     mv clashservice ../init.d/clash
@@ -27,13 +27,11 @@ pushd package/base-files/files
     echo "update_url=https://raw.githubusercontents.com/juewuy/ShellClash/master" >> mark
     echo "userguide=1" >> mark
     echo "redir_mod=混合模式" >> mark
-    echo "clashcore=clashpre" >> mark
+    echo "clashcore=clash.meta" >> mark
+    echo "cpucore=armv8" >> mark
     echo "hostdir=':9999/ui'" >> mark
-    echo "dns_nameserver='https://223.5.5.5/dns-query, https://doh.pub/dns-query, tls://dns.rubyfish.cn:853'" >> mark
-    echo "dns_fallback='https://1.0.0.1/dns-query, https://8.8.4.4/dns-query, https://doh.opendns.com/dns-query'" >> mark
     echo "Geo_v=$(date +'%Y%m%d')" >> mark
     echo "geotype=cn_mini.mmdb" >> mark
-    echo "cpucore=armv8" >> mark
     ## 清理
     rm -fr clash.service misnap_init.sh
   popd
