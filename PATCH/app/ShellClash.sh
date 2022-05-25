@@ -15,7 +15,7 @@ pushd package/base-files/files
     ## 启动文件
     mv clashservice ../init.d/clash
     ## 地址库
-    wget https://raw.githubusercontent.com/Hackl0us/GeoIP2-CN/release/Country.mmdb -O Country.mmdb
+    wget https://raw.githubusercontent.com/RikudouPatrickstar/GeoIP2-CN/release/Country.mmdb -O Country.mmdb
     ## 控制面板
     wget https://raw.githubusercontent.com/juewuy/ShellClash/master/bin/clashdb.tar.gz -O - | tar xz -C ./ui
     sed -i "s/127.0.0.1/192.168.24.1/g" ui/assets/*.js
