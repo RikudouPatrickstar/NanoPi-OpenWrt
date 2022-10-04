@@ -44,11 +44,6 @@ uci delete dhcp.lan.ndp
 # Packet Steering
 uci set network.globals.packet_steering=1
 
-# WAN
-uci set network.wan.proto='pppoe'
-uci del dhcp.wan.ra_flags
-uci add_list dhcp.wan.ra_flags='none'
-
 # LAN DHCP
 uci del dhcp.lan.ra_slaac
 uci set dhcp.lan.start='30'
@@ -94,7 +89,6 @@ sed -i 's/set mouse/"set mouse/g' /usr/share/vim/vim82/defaults.vim
 [ ! -f '/usr/bin/ip' ] && [ -f '/sbin/ip' ] && ln -sf /sbin/ip /usr/bin/ip
 [ ! -f '/usr/bin/wget-ssl' ] && [ -f '/usr/bin/wget' ] && ln -sf /usr/bin/wget /usr/bin/wget-ssl
 [ ! -f '/usr/bin/vi' ] && [ -f '/usr/bin/vim' ] && ln -sf /usr/bin/vim /usr/bin/vi
-opkg flag hold luci-app-firewall
 opkg flag hold firewall
 opkg flag hold dnsmasq-full
 #sync; echo 3 > /proc/sys/vm/drop_caches
