@@ -1,5 +1,5 @@
 # NanoPi-R2S 的 OpenWrt 极简固件
-基于 [nicholas-opensource/OpenWrt-Autobuild](https://github.com/nicholas-opensource/OpenWrt-Autobuild) 对 [openwrt/openwrt v21.02](https://github.com/openwrt/openwrt/tree/openwrt-21.02) 进行定制编译
+基于 [nicholas-opensource/OpenWrt-Autobuild](https://github.com/nicholas-opensource/OpenWrt-Autobuild/tree/21.02_EOL) 对 [openwrt/openwrt](https://github.com/openwrt/openwrt/tree/openwrt-21.02) 进行定制编译
 
 ## 特性
 - 默认 LAN IP： 192.168.24.1
