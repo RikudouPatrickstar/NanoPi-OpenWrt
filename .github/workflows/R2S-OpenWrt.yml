@@ -58,8 +58,10 @@ jobs:
         version_code=$(cat ./openwrt/include/version.mk | grep 'VERSION_CODE),' | awk -F ',' '{print $3}' | sed 's_)__g')
         kernel_version=$(cat ./openwrt/include/kernel-version.mk | egrep 'LINUX_KERNEL_HASH-.*=' | awk '{print $1}' | awk -F '-' '{print $2}')
         release_name="R2S-OpenWrt_v${version_number}_${compile_date}"
+        commit_id=$(git log | grep commit | head -n 1 | sed 's/commit //')
         echo "##[set-output name=compile_date;]$compile_date"
         echo "##[set-output name=release_name;]$release_name"
+        echo "##[set-output name=commit_id;]$commit_id"
         echo "- OpenWrt 版本：${version_number} ${version_code}" > DESC.md
         echo "- Linux Kernel 版本：${kernel_version}" >> DESC.md
         sed -n '/## 特性/,/## 感谢/p' README.md | grep -v '##' | grep -v '^$' >> DESC.md
@@ -122,5 +124,6 @@ jobs:
         artifacts: ./openwrt/bin/targets/rockchip/armv8/*
         name: ${{ steps.gen_info.outputs.release_name }}
         tag: ${{ steps.gen_info.outputs.compile_date }}
+        commit: ${{ steps.gen_info.outputs.commit_id }}
         bodyFile: ./DESC.md
         token: ${{ secrets.GITHUB_TOKEN }}
