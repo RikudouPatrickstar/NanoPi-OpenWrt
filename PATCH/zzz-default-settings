@@ -19,7 +19,7 @@ uci set luci.main.mediaurlbase='/luci-static/argon'
 uci commit luci
 
 # Feeds
-sed -i 's,downloads.openwrt.org,mirror.sjtu.edu.cn/openwrt,g' /etc/opkg/distfeeds.conf
+sed -i 's,downloads.openwrt.org,mirrors.tuna.tsinghua.edu.cn/openwrt,g' /etc/opkg/distfeeds.conf
 
 # uHTTPd
 uci set uhttpd.main.rfc1918_filter=0
