@@ -17,15 +17,16 @@ pushd package/base-files/files
     ## 地址库
     wget https://raw.githubusercontent.com/RikudouPatrickstar/GeoIP2-CN/release/Country.mmdb -O Country.mmdb
     ## 控制面板
-    wget https://raw.githubusercontent.com/RikudouPatrickstar/ShellClash/master/bin/clashdb.tar.gz -O - | tar xz -C ./ui
+    wget https://raw.githubusercontent.com/RikudouPatrickstar/ShellClash/master/bin/meta_yacd.tar.gz -O - | tar xz -C ./ui
     sed -i "s/127.0.0.1/192.168.24.1/g" ui/assets/*.js
     sed -i "s/9090/9999/g" ui/assets/*.js
     ## 创建相关文件
     touch log mac mark
     ## 配置标记文件
     echo "versionsh_l=${shellclash_version}" >> mark
-    echo "update_url=https://raw.githubusercontents.com/RikudouPatrickstar/ShellClash/master" >> mark
+    echo "update_url=https://raw.githubusercontent.com/RikudouPatrickstar/ShellClash/master" >> mark
     echo "userguide=1" >> mark
+    echo "web_save_cron=已关闭" >> mark
     echo "redir_mod=混合模式" >> mark
     echo "clashcore=clash.meta" >> mark
     echo "cpucore=armv8" >> mark
@@ -34,6 +35,8 @@ pushd package/base-files/files
     echo "Geo_v=$(date +'%Y%m%d')" >> mark
     echo "local_proxy=已开启" >> mark
     echo "local_type=iptables增强模式" >> mark
+    echo "ipv6_support=未开启" >> mark
+    echo "ipv6_dns=未开启" >> mark
     ## 清理
     rm -fr clash.service misnap_init.sh
   popd
