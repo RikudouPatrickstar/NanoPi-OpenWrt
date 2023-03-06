@@ -20,6 +20,7 @@ pushd package/base-files/files
     wget https://raw.githubusercontent.com/RikudouPatrickstar/ShellClash/master/bin/meta_yacd.tar.gz -O - | tar xz -C ./ui
     sed -i "s/127.0.0.1/192.168.24.1/g" ui/assets/*.js
     sed -i "s/9090/9999/g" ui/assets/*.js
+    sed -i "s/127.0.0.1:9090/192.168.24.1:9999/g" ui/*.html
     ## 创建相关文件
     touch log mac mark
     ## 配置标记文件
