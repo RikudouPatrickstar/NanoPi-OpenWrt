@@ -38,6 +38,7 @@ pushd package/base-files/files
     echo "local_type=iptables增强模式" >> mark
     echo "ipv6_support=未开启" >> mark
     echo "ipv6_dns=未开启" >> mark
+    echo "common_ports=未开启" >> mark
     ## 清理
     rm -fr clash.service misnap_init.sh
   popd
