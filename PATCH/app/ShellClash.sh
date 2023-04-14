@@ -28,7 +28,7 @@ pushd package/base-files/files
     echo "update_url=https://raw.githubusercontent.com/RikudouPatrickstar/ShellClash/master" >> mark
     echo "userguide=1" >> mark
     echo "web_save_cron=已关闭" >> mark
-    echo "redir_mod=混合模式" >> mark
+    echo "redir_mod=Tun模式" >> mark
     echo "clashcore=clash.meta" >> mark
     echo "cpucore=armv8" >> mark
     echo "hostdir=':9999/ui'" >> mark
@@ -38,7 +38,6 @@ pushd package/base-files/files
     echo "local_type=iptables增强模式" >> mark
     echo "ipv6_support=未开启" >> mark
     echo "ipv6_dns=未开启" >> mark
-    echo "common_ports=未开启" >> mark
     ## 清理
     rm -fr clash.service misnap_init.sh
   popd
