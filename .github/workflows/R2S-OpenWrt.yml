@@ -51,19 +51,13 @@ jobs:
         /bin/bash 01_get_ready.sh
         cp -r ./SCRIPTS/* ./openwrt/
     - name: Generate Information
-      id: gen_info
       run: |
-        compile_date="$(date +%Y-%m-%d_%H-%M)"
-        version_number=$(cat ./openwrt/include/version.mk | grep 'VERSION_NUMBER),' | awk -F ',' '{print $3}' | sed 's_)__g')
-        version_code=$(cat ./openwrt/include/version.mk | grep 'VERSION_CODE),' | awk -F ',' '{print $3}' | sed 's_)__g')
-        kernel_version=$(cat ./openwrt/include/kernel-version.mk | egrep 'LINUX_KERNEL_HASH-.*=' | awk '{print $1}' | awk -F '-' '{print $2}')
-        release_name="R2S-OpenWrt_v${version_number}_${compile_date}"
-        commit_id=$(git log | grep commit | head -n 1 | sed 's/commit //')
-        echo "##[set-output name=compile_date;]$compile_date"
-        echo "##[set-output name=release_name;]$release_name"
-        echo "##[set-output name=commit_id;]$commit_id"
+        echo "compile_date=$(date +%Y-%m-%d_%H-%M)" >> ${GITHUB_ENV}
+        echo "version_number=$(cat ./openwrt/include/version.mk | grep 'VERSION_NUMBER),' | awk -F ',' '{print $3}' | sed 's_)__g')" >> ${GITHUB_ENV}
+        echo "version_code=$(cat ./openwrt/include/version.mk | grep 'VERSION_CODE),' | awk -F ',' '{print $3}' | sed 's_)__g')" >> ${GITHUB_ENV}
+        echo "release_name=R2S-OpenWrt_v${version_number}_${compile_date}" >> ${GITHUB_ENV}
+        echo "commit_id=$(git log | grep commit | head -n 1 | sed 's/commit //')" >> ${GITHUB_ENV}
         echo "- OpenWrt 版本：${version_number} ${version_code}" > DESC.md
-        echo "- Linux Kernel 版本：${kernel_version}" >> DESC.md
         sed -n '/## 特性/,/## 感谢/p' README.md | grep -v '##' | grep -v '^$' >> DESC.md
     - name: Prepare Package
       run: |
@@ -116,14 +110,14 @@ jobs:
     - name: Upload Artifact
       uses: actions/upload-artifact@main
       with:
-        name: ${{ steps.gen_info.outputs.release_name }}
+        name: ${{ env.release_name }}
         path: ./openwrt/bin/targets/rockchip/armv8/*
     - name: Create Release
       uses: ncipollo/release-action@v1
       with:
         artifacts: ./openwrt/bin/targets/rockchip/armv8/*
-        name: ${{ steps.gen_info.outputs.release_name }}
-        tag: ${{ steps.gen_info.outputs.compile_date }}
-        commit: ${{ steps.gen_info.outputs.commit_id }}
+        name: ${{ env.release_name }}
+        tag: ${{ env.compile_date }}
+        commit: ${{ env.commit_id }}
         bodyFile: ./DESC.md
         token: ${{ secrets.GITHUB_TOKEN }}
