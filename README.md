@@ -4,7 +4,7 @@
 ## 特性
 - 默认 LAN IP： 192.168.24.1
 - 插件清单：
-    - 应用：[Samba4](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-samba4)、[ShellClash](https://github.com/juewuy/ShellClash)、Docker
+    - 应用：[Samba4](https://github.com/openwrt/luci/tree/openwrt-21.02/applications/luci-app-samba4)、[ShellClash](https://github.com/juewuy/ShellClash)
     - 主题：[Argon](https://github.com/jerrykuku/luci-theme-argon/tree/master)
 - 移除上游[部分](https://github.com/RikudouPatrickstar/R2S-OpenWrt/blob/21.02/SCRIPTS/my_prepare_package.sh#L10)组件
 - 继承自上游的[更多特性](https://github.com/nicholas-opensource/OpenWrt-Autobuild/tree/21.02_EOL#feature)

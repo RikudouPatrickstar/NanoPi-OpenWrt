@@ -46,10 +46,10 @@ bash ${OP_SC_DIR}/../PATCH/app/ShellClash.sh
 #svn export https://github.com/msylgj/OpenWrt_luci-app/trunk/luci-app-services-wolplus package/new/luci-app-services-wolplus
 
 # Docker
-pushd feeds/packages
-  wget -qO- https://github.com/openwrt/packages/commit/d9d5109.patch | patch -p1
-popd
-sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
+# pushd feeds/packages
+#   wget -qO- https://github.com/openwrt/packages/commit/d9d5109.patch | patch -p1
+# popd
+# sed -i '/sysctl.d/d' feeds/packages/utils/dockerd/Makefile
 
 # 调整默认 LAN IP
 sed -i 's/192.168.1.1/192.168.24.1/g' package/base-files/files/bin/config_generate
