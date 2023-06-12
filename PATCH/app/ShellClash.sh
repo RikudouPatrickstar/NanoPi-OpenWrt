@@ -17,7 +17,7 @@ pushd package/base-files/files
     ## 地址库
     wget https://raw.githubusercontent.com/RikudouPatrickstar/GeoIP2-CN/release/Country.mmdb -O Country.mmdb
     ## 控制面板
-    wget https://raw.githubusercontent.com/RikudouPatrickstar/ShellClash/master/bin/meta_yacd.tar.gz -O - | tar xz -C ./ui
+    wget https://raw.githubusercontent.com/RikudouPatrickstar/ShellClash/master/bin/dashboard/meta_yacd.tar.gz -O - | tar xz -C ./ui
     sed -i "s/127.0.0.1/192.168.24.1/g" ui/assets/*.js
     sed -i "s/9090/9999/g" ui/assets/*.js
     sed -i "s/127.0.0.1:9090/192.168.24.1:9999/g" ui/*.html
@@ -28,7 +28,7 @@ pushd package/base-files/files
     echo "update_url=https://raw.githubusercontent.com/RikudouPatrickstar/ShellClash/master" >> mark
     echo "userguide=1" >> mark
     echo "web_save_cron=已关闭" >> mark
-    echo "redir_mod=Tun模式" >> mark
+    echo "redir_mod=混合模式" >> mark
     echo "clashcore=clash.meta" >> mark
     echo "cpucore=armv8" >> mark
     echo "hostdir=':9999/ui'" >> mark
