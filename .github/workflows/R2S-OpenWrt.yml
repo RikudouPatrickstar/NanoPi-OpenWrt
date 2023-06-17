@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: 
-      - '21.02'
+      - 'master'
     paths:
       - 'PATCH/**'
       - 'SCRIPTS/**'
@@ -14,14 +14,24 @@ jobs:
   build:
     runs-on: ubuntu-20.04
     steps:
-    - name: Clone Repository
+    - name: Maximize build space
+      uses: easimon/maximize-build-space@master
+      with:
+        swap-size-mb: 512
+        temp-reserve-mb: 100
+        root-reserve-mb: 1280
+        remove-dotnet: 'true'
+        remove-android: 'true'
+        remove-haskell: 'true'
+        remove-codeql: 'true'
+    - name: Checkout
       uses: actions/checkout@main
-    - name: Show CPU Model and Free Space
+    - name: Show CPU Model
       run: |
         echo -e "Total CPU cores\t: $(nproc)"
         cat /proc/cpuinfo | grep 'model name'
         ulimit -a
-    - name: Init Build Dependencies
+    - name: Init build dependencies
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -31,18 +41,20 @@ jobs:
         sudo -E apt-get -qq install aria2
         sudo -E wget -P /usr/local/sbin/ https://github.com/HiGarfield/lede-17.01.4-Mod/raw/master/.github/backup/apt-fast
         sudo -E chmod -R 755 /usr/local/sbin/apt-fast
-        sudo -E apt-fast -y -qq install build-essential rsync asciidoc binutils bzip2 gawk gettext git libncurses5-dev libz-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc1 libc6-dev-i386 subversion flex uglifyjs git-core gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libreadline-dev libglib2.0-dev xmlto qemu-utils upx libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget ccache curl swig coreutils vim nano python3 python3-pip python3-ply haveged lrzsz scons
-        sudo -E pip3 install pyelftools
+        sudo -E apt-fast -y -qq install dwarves llvm clang lldb lld build-essential rsync asciidoc binutils bzip2 gawk gettext git libncurses5-dev patch python3 python2.7 unzip zlib1g-dev lib32gcc-s1 libc6-dev-i386 subversion flex uglifyjs gcc-multilib p7zip p7zip-full msmtp libssl-dev texinfo libreadline-dev libglib2.0-dev xmlto qemu-utils upx-ucl libelf-dev autoconf automake libtool autopoint device-tree-compiler g++-multilib antlr3 gperf wget ccache curl swig coreutils vim nano python3 python3-pip python3-ply haveged lrzsz scons
+        sudo -E pip3 install pyelftools pylibfdt
         sudo -E apt-get -qq autoremove --purge
         sudo -E apt-get -qq clean
         sudo -E git config --global user.name 'GitHub Actions' && git config --global user.email 'noreply@github.com'
+        df -h
     - name: Merge Nick's Code
       run: |
-        git clone --single-branch -b 21.02_EOL https://github.com/RikudouPatrickstar/Nicholas-OpenWrt.git OpenWrt-Autobuild
+        git clone --single-branch -b main https://github.com/RikudouPatrickstar/Nicholas-OpenWrt.git OpenWrt-Autobuild
         mv ./OpenWrt-Autobuild/SCRIPTS/* ./SCRIPTS/
         mv ./SCRIPTS/R2S/* ./SCRIPTS/
         mv ./OpenWrt-Autobuild/PATCH/* ./PATCH/
-        mv -f ./PATCH/zzz-default-settings ./PATCH/duplicate/addition-trans-zh-r2s/files/
+        mv -f ./PATCH/zzz-default-settings ./PATCH/duplicate/addition-trans-zh-rockchip/files/
+        mv ./OpenWrt-Autobuild/SEED/* ./SEED/
         rm -rf ./OpenWrt-Autobuild/
     - name: Get OpenWrt Code
       run: |
@@ -50,6 +62,7 @@ jobs:
         cp ./SCRIPTS/01_get_ready.sh ./
         /bin/bash 01_get_ready.sh
         cp -r ./SCRIPTS/* ./openwrt/
+        df -h
     - name: Generate Information
       run: |
         compile_date=$(date +%Y-%m-%d_%H-%M)
@@ -110,10 +123,12 @@ jobs:
         cd ./openwrt/
         let make_process=$(nproc)+1
         make -j${make_process} V=m || make -j${make_process} V=m || make -j1 V=s
+        df -h
     - name: Package Artifact
       run: |
         cd ./openwrt/
         sudo -E /bin/bash my_package_artifact.sh
+        df -h
     - name: Upload Artifact
       uses: actions/upload-artifact@main
       with:

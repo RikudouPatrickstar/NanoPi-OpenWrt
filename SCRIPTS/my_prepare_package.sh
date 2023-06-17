@@ -8,14 +8,11 @@ OP_SC_DIR=$(pwd)
 mkdir -p package/new
 
 # 移除多余组件
-sed -i '/Autoreboot/,/fuck/d' 02_prepare_package.sh
-
-# 换回官方 rtl8152-vendor
-sed -i '/8152/d' 02_R2S.sh
+sed -i '/Autoreboot/,/# Golang/d' 02_prepare_package.sh
+sed -i '/# Ram-free/,/fuck/d' 02_prepare_package.sh
 
 # 调整核心频率为 1.6 GHz
-sed -i '/rk3328-enable-1512/d' 02_R2S.sh
-sed -i '/rk3328-enable-1608/s/^#//' 02_R2S.sh
+sed -i 's/rk3328-enable-1512mhz/rk3328-enable-1608mhz/g' 02_R2S.sh
 ################ 修改 Nick 的脚本 -End- ################
 
 
@@ -27,11 +24,8 @@ sed -i '/rk3328-enable-1608/s/^#//' 02_R2S.sh
 
 ################ 自定义部分 -Start- ################
 # 调整 LuCI 依赖，去除 luci-app-opkg，替换主题 bootstrap 为 argon
-sed -i 's/+luci-app-opkg //' ./feeds/luci/collections/luci/Makefile
-sed -i 's/luci-theme-bootstrap/luci-theme-argon/' ./feeds/luci/collections/luci/Makefile
-
-# 去除多余信息显示
-sed -i '/Target Platform/d' ./package/utils/autocore/files/*/*10_system.js
+sed -i '/+luci-light/d;s/+luci-app-opkg/+luci-light/' ./feeds/luci/collections/luci/Makefile
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/' ./feeds/luci/collections/luci-light/Makefile
 
 # Argon 主题
 bash ${OP_SC_DIR}/../PATCH/app/Argon.sh

@@ -35,7 +35,6 @@ uci commit uhttpd
 uci delete network.globals.ula_prefix
 uci delete network.lan.ip6assign
 uci delete network.wan6
-uci set network.wan.ipv6='0'
 uci delete dhcp.lan.ra
 uci delete dhcp.lan.ra_management
 uci delete dhcp.lan.dhcpv6
@@ -58,7 +57,8 @@ uci commit network
 
 # Firewall
 uci set firewall.@defaults[0].fullcone='1'
-uci set firewall.@defaults[0].flow_offloading='0'
+uci set firewall.@defaults[0].flow_offloading='1'
+uci set firewall.@defaults[0].flow_offloading_hw='0'
 uci commit firewall
 
 # SSL
@@ -89,6 +89,7 @@ sed -i 's/set mouse/"set mouse/g' /usr/share/vim/vim82/defaults.vim
 [ ! -f '/usr/bin/ip' ] && [ -f '/sbin/ip' ] && ln -sf /sbin/ip /usr/bin/ip
 [ ! -f '/usr/bin/wget-ssl' ] && [ -f '/usr/bin/wget' ] && ln -sf /usr/bin/wget /usr/bin/wget-ssl
 [ ! -f '/usr/bin/vi' ] && [ -f '/usr/bin/vim' ] && ln -sf /usr/bin/vim /usr/bin/vi
+opkg flag hold luci-app-firewall
 opkg flag hold firewall
 opkg flag hold dnsmasq-full
 #sync; echo 3 > /proc/sys/vm/drop_caches
