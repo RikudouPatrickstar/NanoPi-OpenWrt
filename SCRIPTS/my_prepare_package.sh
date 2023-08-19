@@ -8,7 +8,7 @@ OP_SC_DIR=$(pwd)
 mkdir -p package/new
 
 # 移除多余组件
-sed -i '/Autoreboot/,/# Golang/d' 02_prepare_package.sh
+sed -i '/# AutoReboot/,/# Golang/d' 02_prepare_package.sh
 sed -i '/# Ram-free/,/fuck/d' 02_prepare_package.sh
 
 # 调整核心频率为 1.6 GHz
