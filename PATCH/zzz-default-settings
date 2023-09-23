@@ -84,7 +84,7 @@ uci set samba4.@samba[0].disable_netbios='1'
 uci commit samba4
 
 # Vim
-sed -i 's/set mouse/"set mouse/g' /usr/share/vim/vim82/defaults.vim
+sed -i 's/set mouse/"set mouse/g' /usr/share/vim/vim*/defaults.vim
 
 # Others
 [ ! -f '/usr/bin/ip' ] && [ -f '/sbin/ip' ] && ln -sf /sbin/ip /usr/bin/ip
