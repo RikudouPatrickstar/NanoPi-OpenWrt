@@ -18,8 +18,9 @@ pushd package/base-files/files
     ## 地址库
     wget https://raw.githubusercontent.com/RikudouPatrickstar/GeoIP2-CN/release/Country.mmdb -O Country.mmdb
     ## 控制面板
-    wget https://raw.githubusercontent.com/RikudouPatrickstar/ShellClash/master/bin/dashboard/meta_yacd.tar.gz -O - | tar xz -C ./ui
-    sed -i "s/127.0.0.1:9090/192.168.24.1:9999/g" ui/*.html
+    wget https://raw.githubusercontent.com/RikudouPatrickstar/ShellClash/master/bin/dashboard/meta_xd.tar.gz -O - | tar xz -C ./ui
+    sed -i "s/127.0.0.1/192.168.24.1/g" ui/assets/*.js
+    sed -i "s/9090/9999/g" ui/assets/*.js
     pushd configs
       ## 放置各list文件
       mv ../*.list ./
