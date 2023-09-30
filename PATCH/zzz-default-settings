@@ -77,6 +77,9 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 # uci set openclash.config.log_level='info'
 # uci commit openclash
 
+# ShellClash
+/etc/init.d/clash disable
+
 # Samba4
 uci set samba4.@samba[0].interface='lan'
 uci set samba4.@samba[0].macos='1'
