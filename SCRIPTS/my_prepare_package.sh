@@ -34,10 +34,10 @@ bash ${OP_SC_DIR}/../PATCH/app/Argon.sh
 bash ${OP_SC_DIR}/../PATCH/app/ShellClash.sh
 
 # frpc
-#bash ${OP_SC_DIR}/../PATCH/app/frpc.sh
+# bash ${OP_SC_DIR}/../PATCH/app/frpc.sh
 
 # Wake-on-LAN-plus
-#svn export https://github.com/msylgj/OpenWrt_luci-app/trunk/luci-app-services-wolplus package/new/luci-app-services-wolplus
+# svn export https://github.com/msylgj/OpenWrt_luci-app/trunk/luci-app-services-wolplus package/new/luci-app-services-wolplus
 
 # Docker
 # pushd feeds/packages
