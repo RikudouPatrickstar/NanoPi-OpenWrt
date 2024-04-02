@@ -1,4 +1,4 @@
-# NanoPi-R2S 的 OpenWrt 极简固件
+# NanoPi-R2S/R4S 的 OpenWrt 极简固件
 基于 [nicholas-opensource/OpenWrt-Autobuild](https://github.com/nicholas-opensource/OpenWrt-Autobuild/tree/main) 对 [openwrt/openwrt](https://github.com/openwrt/openwrt/tree/openwrt-23.05) 进行定制编译
 
 ## 特性

@@ -18,7 +18,6 @@ sed -i 's/rk3328-enable-1512mhz/rk3328-enable-1608mhz/g' 02_R2S.sh
 
 ################ 执行 02 脚本 -Start- ################
 /bin/bash 02_prepare_package.sh
-/bin/bash 02_R2S.sh
 ################ 执行 02 脚本 -End- ################
 
 

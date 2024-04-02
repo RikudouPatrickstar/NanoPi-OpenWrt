@@ -1,0 +1,125 @@
+CONFIG_TARGET_rockchip=y
+CONFIG_TARGET_rockchip_armv8=y
+CONFIG_TARGET_rockchip_armv8_DEVICE_friendlyarm_nanopi-r4s=y
+CONFIG_TARGET_ROOTFS_EXT4FS=y
+CONFIG_TARGET_ROOTFS_SQUASHFS=y
+CONFIG_TARGET_KERNEL_PARTSIZE=32
+CONFIG_TARGET_ROOTFS_PARTSIZE=3718
+CONFIG_KERNEL_BUILD_DOMAIN="github.com"
+CONFIG_KERNEL_BUILD_USER="RikudouPatrickstar"
+#CONFIG_ALL_KMODS=y
+CONFIG_DEVEL=y
+# CONFIG_KERNEL_KALLSYMS is not set
+CONFIG_PACKAGE_r8169-firmware=y
+CONFIG_PACKAGE_trusted-firmware-a-rk3399=y
+CONFIG_TOOLCHAINOPTS=y
+CONFIG_GCC_USE_VERSION_11=y
+CONFIG_KERNEL_BPF_EVENTS=y
+CONFIG_KERNEL_CGROUPS=y
+CONFIG_KERNEL_CGROUP_BPF=y
+CONFIG_KERNEL_DEBUG_INFO=y
+CONFIG_KERNEL_DEBUG_INFO_BTF=y
+CONFIG_KERNEL_DEBUG_INFO_REDUCED=n
+CONFIG_BPF_TOOLCHAIN_HOST=y
+CONFIG_KERNEL_XDP_SOCKETS=y
+CONFIG_PACKAGE_kmod-xdp-sockets-diag=y
+
+# Basic Components
+CONFIG_PACKAGE_addition-trans-zh=y
+CONFIG_PACKAGE_autocore=y
+CONFIG_PACKAGE_coremark=y
+CONFIG_PACKAGE_coreutils-nohup=y
+CONFIG_PACKAGE_diffutils=y
+CONFIG_PACKAGE_dnsmasq-full=y
+# CONFIG_PACKAGE_dnsmasq_full_ipset is not set
+# CONFIG_PACKAGE_dnsmasq is not set
+CONFIG_PACKAGE_kmod-fs-exfat=y
+CONFIG_PACKAGE_kmod-fs-ext4=y
+CONFIG_PACKAGE_kmod-fs-f2fs=y
+CONFIG_PACKAGE_kmod-fs-ntfs=y
+CONFIG_PACKAGE_kmod-fs-vfat=y
+CONFIG_PACKAGE_kmod-gpio-button-hotplug=y
+CONFIG_PACKAGE_kmod-tcp-bbr=y
+CONFIG_PACKAGE_kmod-tun=y
+CONFIG_PACKAGE_usbmuxd=y
+CONFIG_PACKAGE_kmod-usb-net-rndis=y
+CONFIG_PACKAGE_kmod-usb-net-ipheth=y
+#CONFIG_PACKAGE_kmod-usb-net-rtl8152-vendor=y
+CONFIG_PACKAGE_libustream-openssl=y
+# CONFIG_PACKAGE_libustream-wolfssl is not set
+# CONFIG_PACKAGE_firewall is not set
+CONFIG_PACKAGE_firewall4=y
+# CONFIG_PACKAGE_kmod-ipt-offload is not set
+CONFIG_PACKAGE_kmod-nft-fullcone=y
+CONFIG_DEFAULT_kmod-nft-offload=y
+CONFIG_PACKAGE_kmod-nft-tproxy=y
+# CONFIG_PACKAGE_arptables-legacy is not set
+# CONFIG_PACKAGE_arptables-nft is not set
+# CONFIG_PACKAGE_ebtables-legacy is not set
+# CONFIG_PACKAGE_ebtables-nft is not set
+# CONFIG_PACKAGE_ip6tables-legacy is not set
+# CONFIG_PACKAGE_ip6tables-nft is not set
+# CONFIG_PACKAGE_iptables-legacy is not set
+# CONFIG_PACKAGE_iptables-nft is not set
+# CONFIG_PACKAGE_urandom-seed is not set
+# CONFIG_PACKAGE_urngd is not set
+
+# LuCI
+CONFIG_LUCI_LANG_en=y
+CONFIG_LUCI_LANG_zh_Hans=y
+# CONFIG_LUCI_CSSTIDY is not set
+# CONFIG_LUCI_JSMIN is not set
+CONFIG_PACKAGE_luci=y
+CONFIG_PACKAGE_luci-compat=y
+CONFIG_PACKAGE_luci-app-samba4=y
+# CONFIG_PACKAGE_luci-app-services-wolplus is not set
+CONFIG_PACKAGE_luci-theme-argon=y
+
+# Utilities
+CONFIG_PACKAGE_curl=y
+CONFIG_PACKAGE_htop=y
+CONFIG_PACKAGE_iperf3=y
+CONFIG_PACKAGE_lrzsz=y
+CONFIG_PACKAGE_tree=y
+CONFIG_PACKAGE_unzip=y
+CONFIG_PACKAGE_vim-fuller=y
+CONFIG_PACKAGE_wget-ssl=y
+
+# BusyBox
+CONFIG_BUSYBOX_CUSTOM=y
+CONFIG_BUSYBOX_CONFIG_DOS2UNIX=y
+CONFIG_BUSYBOX_CONFIG_UNIX2DOS=y
+# CONFIG_BUSYBOX_CONFIG_VI is not set
+CONFIG_BUSYBOX_CONFIG_FEATURE_SYSLOG_INFO=y
+
+# OpenSSL
+CONFIG_OPENSSL_ENGINE=y
+CONFIG_OPENSSL_OPTIMIZE_SPEED=y
+CONFIG_OPENSSL_WITH_ASM=y
+# CONFIG_OPENSSL_WITH_ERROR_MESSAGES is not set
+CONFIG_PACKAGE_libopenssl-afalg=y
+CONFIG_PACKAGE_libopenssl-conf=y
+CONFIG_PACKAGE_libopenssl-devcrypto=y
+CONFIG_PACKAGE_libopenssl-legacy=y
+CONFIG_PACKAGE_libopenssl-padlock=y
+CONFIG_PACKAGE_openssl-util=y
+CONFIG_PACKAGE_libcurl=y
+CONFIG_LIBCURL_OPENSSL=y
+# CONFIG_LIBCURL_GNUTLS is not set
+# CONFIG_LIBCURL_MBEDTLS is not set
+# CONFIG_LIBCURL_NOSSL is not set
+# CONFIG_LIBCURL_WOLFSSL is not set
+
+# Docker
+# CONFIG_PACKAGE_docker is not set
+# CONFIG_PACKAGE_dockerd is not set
+# CONFIG_PACKAGE_docker-compose is not set
+# CONFIG_PACKAGE_block-mount is not set
+# CONFIG_DOCKER_CGROUP_OPTIONS is not set
+# CONFIG_DOCKER_OPTIONAL_FEATURES is not set
+# CONFIG_DOCKER_NET_ENCRYPT is not set
+# CONFIG_DOCKER_NET_MACVLAN is not set
+# CONFIG_DOCKER_NET_OVERLAY is not set
+# CONFIG_DOCKER_NET_TFTP is not set
+# CONFIG_DOCKER_STO_BTRFS is not set
+# CONFIG_DOCKER_STO_EXT4 is not set

@@ -1,4 +1,4 @@
-name: R2S-OpenWrt
+name: R4S-OpenWrt
 on:
   workflow_dispatch:
   push:
@@ -52,9 +52,9 @@ jobs:
       run: |
         git clone --single-branch -b main https://github.com/RikudouPatrickstar/Nicholas-OpenWrt.git OpenWrt-Autobuild
         mv ./OpenWrt-Autobuild/SCRIPTS/* ./SCRIPTS/
-        mv ./SCRIPTS/R2S/* ./SCRIPTS/
+        mv ./SCRIPTS/R4S/* ./SCRIPTS/
         mv ./OpenWrt-Autobuild/PATCH/* ./PATCH/
-        mv -f ./PATCH/r2s-zzz-default-settings ./PATCH/duplicate/addition-trans-zh-rockchip/files/zzz-default-settings
+        mv -f ./PATCH/r4s-zzz-default-settings ./PATCH/duplicate/addition-trans-zh-rockchip/files/zzz-default-settings
         mv ./OpenWrt-Autobuild/SEED/* ./SEED/
         rm -rf ./OpenWrt-Autobuild/
     - name: Get OpenWrt Code
@@ -69,9 +69,9 @@ jobs:
         compile_date=$(date +%Y-%m-%d_%H-%M)
         version_number=$(cat ./openwrt/include/version.mk | grep 'VERSION_NUMBER),' | awk -F ',' '{print $3}' | sed 's_)__g')
         version_code=$(cat ./openwrt/include/version.mk | grep 'VERSION_CODE),' | awk -F ',' '{print $3}' | sed 's_)__g')
-        release_name=R2S-OpenWrt_v${version_number}_${compile_date}
+        release_name=R4S-OpenWrt_v${version_number}_${compile_date}
         commit_id=$(git log | grep commit | head -n 1 | sed 's/commit //')
-        tag_name=r2s-${compile_date}
+        tag_name=r4s-${compile_date}
 
         echo "compile_date=${compile_date}" >> ${GITHUB_ENV}
         echo "version_number=${version_number}" >> ${GITHUB_ENV}
@@ -86,7 +86,7 @@ jobs:
       run: |
         cd ./openwrt/
         /bin/bash my_prepare_package.sh
-        /bin/bash 02_R2S.sh
+        /bin/bash 02_R4S.sh
     - name: Convert Translation
       run: |
         cd ./openwrt/
@@ -102,7 +102,7 @@ jobs:
     - name: Make Config
       run: |
         cd ./openwrt/
-        mv ../SEED/r2s-config.seed .config
+        mv ../SEED/r4s-config.seed .config
         make defconfig
     - name: Smart Chmod
       run: |
