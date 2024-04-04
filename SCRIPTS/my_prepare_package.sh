@@ -10,9 +10,6 @@ mkdir -p package/new
 # 移除多余组件
 sed -i '/# AutoReboot/,/# Golang/d' 02_prepare_package.sh
 sed -i '/# Ram-free/,/fuck/d' 02_prepare_package.sh
-
-# 调整核心频率为 1.6 GHz
-sed -i 's/rk3328-enable-1512mhz/rk3328-enable-1608mhz/g' 02_R2S.sh
 ################ 修改 Nick 的脚本 -End- ################
 
 
