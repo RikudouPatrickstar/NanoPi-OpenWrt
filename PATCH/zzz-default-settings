@@ -40,19 +40,11 @@ uci delete dhcp.lan.ra_management
 uci delete dhcp.lan.dhcpv6
 uci delete dhcp.lan.ndp
 uci set dhcp.@dnsmasq[0].filter_aaaa=1
+uci commit dhcp
 
 # Packet Steering
 uci set network.globals.packet_steering=1
 
-# LAN DHCP
-uci del dhcp.lan.ra_slaac
-uci set dhcp.lan.start='30'
-uci set dhcp.lan.limit='220'
-uci set dhcp.lan.leasetime='2h'
-uci del dhcp.lan.ra_flags
-uci add_list dhcp.lan.ra_flags='none'
-
-uci commit dhcp
 uci commit network
 /etc/init.d/network restart
 
