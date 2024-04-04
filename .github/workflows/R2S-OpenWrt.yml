@@ -54,7 +54,8 @@ jobs:
         mv ./OpenWrt-Autobuild/SCRIPTS/* ./SCRIPTS/
         mv ./SCRIPTS/R2S/* ./SCRIPTS/
         mv ./OpenWrt-Autobuild/PATCH/* ./PATCH/
-        mv -f ./PATCH/r2s-zzz-default-settings ./PATCH/duplicate/addition-trans-zh-rockchip/files/zzz-default-settings
+        mv -f ./PATCH/zzz-default-settings ./PATCH/duplicate/addition-trans-zh-rockchip/files/zzz-default-settings
+        sed -i "s/NanoPi-<model_name>/NanoPi-R2S/g" ./PATCH/duplicate/addition-trans-zh-rockchip/files/zzz-default-settings
         mv ./OpenWrt-Autobuild/SEED/* ./SEED/
         rm -rf ./OpenWrt-Autobuild/
     - name: Get OpenWrt Code
@@ -67,21 +68,18 @@ jobs:
     - name: Generate Information
       run: |
         compile_date=$(date +%Y-%m-%d_%H-%M)
+        tag_name=R2S-${compile_date}
         version_number=$(cat ./openwrt/include/version.mk | grep 'VERSION_NUMBER),' | awk -F ',' '{print $3}' | sed 's_)__g')
         version_code=$(cat ./openwrt/include/version.mk | grep 'VERSION_CODE),' | awk -F ',' '{print $3}' | sed 's_)__g')
         release_name=R2S-OpenWrt_v${version_number}_${compile_date}
         commit_id=$(git log | grep commit | head -n 1 | sed 's/commit //')
-        tag_name=r2s-${compile_date}
-
         echo "compile_date=${compile_date}" >> ${GITHUB_ENV}
+        echo "tag_name=${tag_name}" >> ${GITHUB_ENV}
         echo "version_number=${version_number}" >> ${GITHUB_ENV}
         echo "version_code=${version_code}" >> ${GITHUB_ENV}
         echo "release_name=${release_name}" >> ${GITHUB_ENV}
         echo "commit_id=${commit_id}" >> ${GITHUB_ENV}
-        echo "tag_name=${tag_name}" >> ${GITHUB_ENV}
-
         echo "- OpenWrt 版本：${version_number} ${version_code}" > DESC.md
-        sed -n '/## 特性/,/## 感谢/p' README.md | grep -v '##' | grep -v '^$' >> DESC.md
     - name: Prepare Package
       run: |
         cd ./openwrt/

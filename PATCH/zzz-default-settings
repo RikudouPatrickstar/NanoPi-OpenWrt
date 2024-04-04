@@ -3,7 +3,7 @@
 # System Info
 uci set system.@system[0].timezone=CST-8
 uci set system.@system[0].zonename=Asia/Shanghai
-uci set system.@system[0].hostname='NanoPi-R4S'
+uci set system.@system[0].hostname='NanoPi-<model_name>'
 
 # System Log
 uci set system.@system[0].log_size='512'
