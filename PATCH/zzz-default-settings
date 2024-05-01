@@ -85,6 +85,7 @@ sed -i 's/set mouse/"set mouse/g' /usr/share/vim/vim*/defaults.vim
 [ ! -f '/usr/bin/ip' ] && [ -f '/sbin/ip' ] && ln -sf /sbin/ip /usr/bin/ip
 [ ! -f '/usr/bin/wget-ssl' ] && [ -f '/usr/bin/wget' ] && ln -sf /usr/bin/wget /usr/bin/wget-ssl
 [ ! -f '/usr/bin/vi' ] && [ -f '/usr/bin/vim' ] && ln -sf /usr/bin/vim /usr/bin/vi
+sed -i "s_alias ll=.*_alias ll='ls -hlAF --color=auto'_g" /etc/shinit
 opkg flag hold luci-app-firewall
 opkg flag hold firewall
 opkg flag hold dnsmasq-full
