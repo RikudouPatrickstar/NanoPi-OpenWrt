@@ -26,8 +26,8 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon/' ./feeds/luci/collections/luci-
 # Argon 主题
 bash ${OP_SC_DIR}/../PATCH/app/Argon.sh
 
-# ShellClash
-bash ${OP_SC_DIR}/../PATCH/app/ShellClash.sh
+# ShellCrash
+bash ${OP_SC_DIR}/../PATCH/app/ShellCrash.sh
 
 # frpc
 # bash ${OP_SC_DIR}/../PATCH/app/frpc.sh

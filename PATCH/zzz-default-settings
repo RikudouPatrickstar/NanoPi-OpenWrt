@@ -70,7 +70,7 @@ echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 # uci commit openclash
 
 # ShellClash
-/etc/init.d/clash disable
+/etc/init.d/shellcrash disable
 
 # Samba4
 uci set samba4.@samba[0].interface='lan'
