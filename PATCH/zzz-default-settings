@@ -62,13 +62,6 @@ sed -i 's,#USE_SOFTDRIVERS = 2,USE_SOFTDRIVERS = 1,g' /etc/ssl/openssl.cnf
 sed -i '/log-facility/d' /etc/dnsmasq.conf
 echo "log-facility=/dev/null" >> /etc/dnsmasq.conf
 
-# OpenClash
-# uci set openclash.config.core_version='linux-armv8'
-# #uci set openclash.config.en_mode='fake-ip'
-# #uci set openclash.config.operation_mode='fake-ip'
-# uci set openclash.config.log_level='info'
-# uci commit openclash
-
 # ShellClash
 /etc/init.d/shellcrash disable
 
