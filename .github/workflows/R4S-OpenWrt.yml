@@ -120,14 +120,11 @@ jobs:
     - name: Make Toolchain
       run: |
         cd ./openwrt/
-        let make_process=$(nproc)+1
-        make toolchain/install -j${make_process} V=m
+        IGNORE_ERRORS=1 make toolchain/install -j$(($(nproc) + 1)) V=s
     - name: Compile Openwrt
       run: |
         cd ./openwrt/
-        let make_process=$(nproc)+1
-        make -j${make_process} V=m || make -j${make_process} V=m || make -j1 V=s
-        df -h
+        IGNORE_ERRORS=1 make -j$(($(nproc) + 1)) V=s
     - name: Package Artifact
       run: |
         cd ./openwrt/
