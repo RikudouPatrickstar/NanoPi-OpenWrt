@@ -8,6 +8,7 @@ on:
       - 'PATCH/**'
       - 'SCRIPTS/**'
       - 'SEED/**'
+      - 'README.md'
 env:
   TZ: Asia/Shanghai
 jobs:
